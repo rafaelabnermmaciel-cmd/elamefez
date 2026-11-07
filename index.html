@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ela me Fez · Ateliê Wilma Virgínia</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta name="description" content="Peças feitas à mão: nécessaires, bordados, amigurumi e presentes personalizados. Fale com a Wilma no WhatsApp.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://elamefez.netlify.app/">
+<meta property="og:title" content="Ela me Fez · Ateliê Wilma Virgínia">
+<meta property="og:description" content="Peças feitas à mão: nécessaires, bordados, amigurumi e presentes personalizados. Fale com a Wilma no WhatsApp.">
+<meta property="og:image" content="https://elamefez.netlify.app/img/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ela me Fez · Ateliê Wilma Virgínia">
+<meta name="twitter:description" content="Peças feitas à mão: nécessaires, bordados, amigurumi e presentes personalizados.">
+<meta name="twitter:image" content="https://elamefez.netlify.app/img/og-image.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F6F0E4;
+    --cream-deep:#EEE3CE;
+    --ink:#372F27;
+    --ink-soft:#5C5346;
+    --sage:#78865E;
+    --sage-deep:#5E6B48;
+    --clay:#A9714B;
+    --rose:#CE9C9A;
+    --gold:#B08A2C;
+    --line: rgba(55,47,39,0.16);
+    --paper: #FFFDF8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{-webkit-tap-highlight-color:transparent;}
+  body{
+    background:
+      radial-gradient(circle at 15% 8%, rgba(120,134,94,0.10), transparent 40%),
+      radial-gradient(circle at 90% 92%, rgba(169,113,75,0.12), transparent 45%),
+      var(--cream);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    display:flex;
+    justify-content:center;
+    min-height:100vh;
+    padding: 28px 14px 60px;
+  }
+  .page{
+    width:100%;
+    max-width:460px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    text-align:center;
+    padding: 6px 6px 22px;
+  }
+  .mark{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:74px; height:74px;
+    border-radius:50%;
+    background: var(--paper);
+    border:1.5px solid var(--line);
+    box-shadow: 0 2px 0 rgba(55,47,39,0.06);
+    margin-bottom:14px;
+  }
+  .mark svg{width:38px;height:38px;}
+  .wordmark{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:2.9rem;
+    line-height:1;
+    color:var(--ink);
+    letter-spacing:0.5px;
+  }
+  .subtitle{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:0.95rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    margin-top:8px;
+  }
+  .tagline{
+    font-family:'Jost', sans-serif;
+    font-size:0.98rem;
+    color:var(--ink-soft);
+    max-width:320px;
+    margin: 12px auto 0;
+    line-height:1.5;
+  }
+
+  /* ---------- CTA buttons ---------- */
+  .cta-group{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    margin-top:22px;
+  }
+  .btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:15px 18px;
+    border-radius:16px;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:1.02rem;
+    text-decoration:none;
+    border:1.5px solid transparent;
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn svg{width:20px;height:20px; flex-shrink:0;}
+  .btn-primary{
+    background: var(--sage);
+    color: #FBF8F0;
+    box-shadow: 0 3px 0 var(--sage-deep);
+  }
+  .btn-primary:active{ box-shadow: 0 1px 0 var(--sage-deep); }
+  .btn-secondary{
+    background: var(--paper);
+    color: var(--ink);
+    border-color: var(--line);
+  }
+  .btn-note{
+    text-align:center;
+    font-size:0.78rem;
+    color: var(--ink-soft);
+    margin-top:10px;
+    letter-spacing:0.02em;
+  }
+
+  /* ---------- Stitch divider (signature element) ---------- */
+  .stitch{
+    width:100%;
+    height:22px;
+    margin: 34px 0 26px;
+  }
+  .stitch svg{ width:100%; height:100%; display:block; }
+  .stitch path{
+    stroke: var(--clay);
+    stroke-width:2;
+    fill:none;
+    stroke-dasharray: 9 8;
+    stroke-linecap:round;
+    opacity:0.55;
+  }
+
+  /* ---------- Section titles ---------- */
+  .section-head{
+    text-align:center;
+    margin-bottom:18px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--clay);
+    background: var(--paper);
+    border:1px solid var(--line);
+    padding: 3px 16px 5px;
+    border-radius: 20px;
+    margin-bottom:10px;
+  }
+  .section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.45rem;
+    color:var(--ink);
+  }
+
+  /* ---------- Portfolio cards ---------- */
+  .segments{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+  }
+  .segment-card{
+    background: var(--paper);
+    border:1px solid rgba(55,47,39,0.08);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow: 0 6px 20px rgba(55,47,39,0.07);
+    opacity:0;
+    transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s ease, box-shadow .25s ease, translate .25s ease;
+  }
+  .segment-card.in{ opacity:1; transform:translateY(0); }
+  .segment-card:hover{ box-shadow: 0 10px 26px rgba(55,47,39,0.11); }
+  .segment-photos{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:3px;
+    background:var(--line);
+  }
+  .segment-photos.single{ grid-template-columns: 1fr; }
+  .segment-photos a{ display:block; position:relative; overflow:hidden; }
+  .segment-photos a::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(55,47,39,0.32), transparent 45%);
+    opacity:0;
+    transition: opacity .2s ease;
+  }
+  .segment-photos a:active::after{ opacity:1; }
+  .segment-photos img{
+    width:100%;
+    aspect-ratio: 1 / 1.05;
+    object-fit:cover;
+    object-position: center 30%;
+    display:block;
+  }
+  .segment-photos.single img{ aspect-ratio: 16 / 11; object-position:center; }
+  .segment-body{
+    padding: 16px 18px 18px;
+    position:relative;
+  }
+  .tag-chip{
+    position:absolute;
+    top:-16px; left:16px;
+    background: var(--clay);
+    color:#FBF3E8;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:1.1rem;
+    padding: 3px 14px 5px;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+  }
+  .segment-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.14rem;
+    margin: 10px 0 6px;
+    color:var(--ink);
+  }
+  .segment-desc{
+    font-size:0.9rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+  }
+  .segment-more{
+    display:inline-block;
+    margin-top:10px;
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--sage-deep);
+    letter-spacing:0.02em;
+  }
+  .segment-more::before{ content:"✦ "; }
+  .segment-cta{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    width:fit-content;
+    margin-top:12px;
+    padding:8px 14px;
+    border-radius:20px;
+    background: var(--sage);
+    color:#FBF8F0;
+    font-family:'Jost', sans-serif;
+    font-weight:600;
+    font-size:0.8rem;
+    text-decoration:none;
+    transition: transform .15s ease;
+  }
+  .segment-cta:active{ transform: scale(0.96); }
+  .segment-cta svg{ width:14px; height:14px; flex-shrink:0; }
+
+  /* ---------- Testimonials ---------- */
+  .testimonials{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .testi-card{
+    background: var(--paper);
+    border:1px solid rgba(55,47,39,0.08);
+    border-radius:16px;
+    padding: 16px 18px;
+    position:relative;
+    box-shadow: 0 4px 14px rgba(55,47,39,0.05);
+    opacity:0;
+    transform: translateY(14px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .testi-card.in{ opacity:1; transform:translateY(0); }
+  .testi-quote{
+    font-family:'Caveat', cursive;
+    font-size:1.8rem;
+    line-height:1;
+    color:var(--rose);
+    position:absolute;
+    top:8px; left:14px;
+    opacity:0.9;
+  }
+  .testi-text{
+    font-size:0.94rem;
+    color:var(--ink);
+    line-height:1.5;
+    padding-left:22px;
+    font-style:italic;
+  }
+  .testi-foot{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:10px;
+    padding-left:22px;
+  }
+  .testi-name{
+    font-weight:600;
+    font-size:0.86rem;
+    color:var(--sage-deep);
+  }
+  .testi-src{
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    display:flex;
+    align-items:center;
+    gap:4px;
+  }
+  .testi-src svg{width:12px;height:12px;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center;
+    margin-top:36px;
+  }
+  .footer-line{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1rem;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .footer-meta{
+    margin-top:20px;
+    font-size:0.75rem;
+    color: rgba(55,47,39,0.45);
+    letter-spacing:0.03em;
+  }
+
+  @media (max-width:360px){
+    .wordmark{ font-size:2.5rem; }
+    .segment-photos img{ height:140px; }
+  }
+
+  /* ---------- Lightbox gallery ---------- */
+  .lightbox-overlay{
+    position:fixed; inset:0;
+    background: rgba(35,30,24,0.78);
+    z-index:1000;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    padding-top:10vh;
+  }
+  .lightbox-overlay.open{ display:flex; animation: fadeIn .2s ease; }
+  @keyframes fadeIn{ from{opacity:0;} to{opacity:1;} }
+  @keyframes slideUp{ from{ transform:translateY(30px); opacity:0; } to{ transform:translateY(0); opacity:1; } }
+  .lightbox-panel{
+    background: var(--cream);
+    width:100%; max-width:480px;
+    border-radius:24px 24px 0 0;
+    max-height:88vh;
+    display:flex; flex-direction:column;
+    animation: slideUp .28s ease;
+    overflow:hidden;
+  }
+  .lightbox-header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 16px 10px 12px 20px;
+  }
+  .lightbox-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.12rem;
+    color:var(--ink);
+  }
+  .lightbox-sub{
+    font-size:0.78rem;
+    color:var(--ink-soft);
+    margin-top:2px;
+  }
+  .lightbox-close{
+    width:34px; height:34px;
+    border-radius:50%;
+    background:var(--paper);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    cursor:pointer;
+  }
+  .lightbox-close svg{ width:16px; height:16px; color:var(--ink); }
+  .lightbox-scroll{
+    display:flex; gap:12px;
+    overflow-x:auto;
+    padding: 4px 20px 22px;
+    scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .lightbox-scroll::-webkit-scrollbar{ display:none; }
+  .lightbox-scroll img{
+    scroll-snap-align:center;
+    width:74%; max-width:280px;
+    flex-shrink:0;
+    border-radius:16px;
+    aspect-ratio: 3/4;
+    object-fit:cover;
+    border:1px solid var(--line);
+    background:var(--paper);
+  }
+  .lightbox-footer{
+    padding: 12px 20px 22px;
+    border-top:1px solid var(--line);
+    background:var(--paper);
+  }
+  .lightbox-hint{
+    text-align:center;
+    font-size:0.72rem;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="mark">
+      <svg viewBox="0 0 48 48" fill="none">
+        <path d="M24 6C24 6 14 14 14 24C14 32 18 38 24 40C30 38 34 32 34 24C34 14 24 6 24 6Z" stroke="#78865E" stroke-width="2"/>
+        <path d="M24 12V34" stroke="#A9714B" stroke-width="1.5" stroke-dasharray="3 3"/>
+      </svg>
+    </div>
+    <div class="wordmark">Ela me Fez</div>
+    <div class="subtitle">Ateliê Wilma Virgínia</div>
+    <p class="tagline">Peças feitas à mão, com afeto e carinho em cada detalhe. Nécessaires, bordados, amigurumi e presentes personalizados.</p>
+
+    <div class="cta-group">
+      <a class="btn btn-primary" id="wa-btn" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Vi%20seu%20trabalho%20no%20Instagram%20e%20queria%20saber%20mais%20sobre%20as%20pe%C3%A7as%20da%20Ela%20me%20Fez%20%F0%9F%98%8A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+        Chamar no WhatsApp
+      </a>
+      <a class="btn btn-secondary" href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Ver no Instagram @ela.me.fez
+      </a>
+    </div>
+    <p class="btn-note">Resposta rápida pelo WhatsApp · encomendas por peça e por encomenda</p>
+  </header>
+
+  <div class="stitch"><svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 20 0, 40 10 T 80 10 T 120 10 T 160 10 T 200 10 T 240 10 T 280 10 T 320 10 T 360 10 T 400 10"/></svg></div>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">o que ela faz</span>
+      <h2 class="section-title">Um pouco do ateliê</h2>
+    </div>
+    <div class="segments" id="segments">
+
+      <article class="segment-card">
+        <div class="segment-photos" data-gallery="necessaires">
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Vi%20as%20n%C3%A9cessaires%20no%20link%20e%20queria%20saber%20mais.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/necessaire_floral.jpg" loading="lazy" alt="Nécessaire com estampa floral delicada"></a>
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Vi%20as%20n%C3%A9cessaires%20no%20link%20e%20queria%20saber%20mais.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/necessaire_aviao.jpg" loading="lazy" alt="Nécessaires com estampa de aviõezinhos"></a>
+        </div>
+        <div class="segment-body">
+          <span class="tag-chip">nécessaires</span>
+          <h3 class="segment-title">Nécessaires &amp; Bolsas</h3>
+          <p class="segment-desc">Do delicado ao divertido, com estampas florais, infantis e cores lisas. Sempre com o acabamento da etiqueta costurada à mão.</p>
+          <span class="segment-more">várias estampas e tamanhos disponíveis</span>
+          <a class="segment-cta" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Vi%20as%20n%C3%A9cessaires%20no%20link%20e%20queria%20saber%20mais.%20%F0%9F%98%8A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+            Perguntar sobre nécessaires
+          </a>
+        </div>
+      </article>
+
+      <article class="segment-card">
+        <div class="segment-photos" data-gallery="maternidade">
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20kits%20de%20maternidade%20e%20beb%C3%AA.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/kit_bebe_bosque.jpg" loading="lazy" alt="Kit de panos de boca com bichinhos do bosque"></a>
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20kits%20de%20maternidade%20e%20beb%C3%AA.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/kit_bebe_urso.jpg" loading="lazy" alt="Kit de panos de boca com estampa de ursinhos"></a>
+        </div>
+        <div class="segment-body">
+          <span class="tag-chip">maternidade</span>
+          <h3 class="segment-title">Kits Maternidade &amp; Bebê</h3>
+          <p class="segment-desc">Panos de boca, toalhas com capuz e kits para chá de bebê, com fuxicos e forrinhos escolhidos a dedo.</p>
+          <span class="segment-more">temas e cores sob encomenda</span>
+          <a class="segment-cta" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20kits%20de%20maternidade%20e%20beb%C3%AA.%20%F0%9F%98%8A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+            Perguntar sobre maternidade
+          </a>
+        </div>
+      </article>
+
+      <article class="segment-card">
+        <div class="segment-photos single" data-gallery="bordados">
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20fazer%20um%20bastidor%20bordado%20personalizado.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/bordado_hoop.jpg" loading="lazy" alt="Bastidor bordado à mão com iniciais e guirlanda floral"></a>
+        </div>
+        <div class="segment-body">
+          <span class="tag-chip">bordados</span>
+          <h3 class="segment-title">Bordados Personalizados</h3>
+          <p class="segment-desc">Bastidores bordados à mão com iniciais, datas e guirlandas. Perfeitos para casamentos, nascimentos e presentes com história.</p>
+          <span class="segment-more">totalmente personalizável</span>
+          <a class="segment-cta" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20fazer%20um%20bastidor%20bordado%20personalizado.%20%F0%9F%98%8A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+            Perguntar sobre bordados
+          </a>
+        </div>
+      </article>
+
+      <article class="segment-card">
+        <div class="segment-photos single" data-gallery="croche">
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20amigurumis%20de%20croch%C3%AA.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/amigurumi_raposa.jpg" loading="lazy" alt="Amigurumi de crochê em formato de raposa"></a>
+        </div>
+        <div class="segment-body">
+          <span class="tag-chip">crochê</span>
+          <h3 class="segment-title">Amigurumi em Crochê</h3>
+          <p class="segment-desc">Bichinhos de crochê feitos um a um, ponto a ponto. Uma companhia fofa para presentear ou decorar.</p>
+          <span class="segment-more">outros modelos disponíveis</span>
+          <a class="segment-cta" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20amigurumis%20de%20croch%C3%AA.%20%F0%9F%98%8A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+            Perguntar sobre amigurumi
+          </a>
+        </div>
+      </article>
+
+      <article class="segment-card">
+        <div class="segment-photos" data-gallery="presentes">
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20presentes%20personalizados.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/caderno_receitas.jpg" loading="lazy" alt="Caderno personalizado de receitas de família"></a>
+          <a href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20presentes%20personalizados.%20%F0%9F%98%8A" target="_blank" rel="noopener"><img src="img/porta_vinho.jpg" loading="lazy" alt="Porta-garrafa de vinho em couro"></a>
+        </div>
+        <div class="segment-body">
+          <span class="tag-chip">presentes</span>
+          <h3 class="segment-title">Presentes Personalizados</h3>
+          <p class="segment-desc">Cadernos de receitas de família, porta-vinhos em couro e mimos sob medida para presentear com significado.</p>
+          <span class="segment-more">ideal para datas especiais</span>
+          <a class="segment-cta" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Queria%20saber%20mais%20sobre%20os%20presentes%20personalizados.%20%F0%9F%98%8A" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+            Perguntar sobre presentes
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="stitch"><svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 20 0, 40 10 T 80 10 T 120 10 T 160 10 T 200 10 T 240 10 T 280 10 T 320 10 T 360 10 T 400 10"/></svg></div>
+
+  <section>
+    <div class="section-head">
+      <span class="eyebrow">quem já fez</span>
+      <h2 class="section-title">O que dizem no Instagram</h2>
+    </div>
+    <div class="testimonials" id="testimonials">
+
+      <div class="testi-card">
+        <span class="testi-quote">“</span>
+        <p class="testi-text">Lindo! Sou a próxima da fila de encomendas.</p>
+        <div class="testi-foot">
+          <span class="testi-name">Renata A.</span>
+          <span class="testi-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>comentário no Instagram</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <span class="testi-quote">“</span>
+        <p class="testi-text">Que lindo, vejo afeto e delicadeza em cada peça. Parabéns, minha amiga!</p>
+        <div class="testi-foot">
+          <span class="testi-name">Érica M.</span>
+          <span class="testi-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>comentário no Instagram</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <span class="testi-quote">“</span>
+        <p class="testi-text">Amo o seu trabalho, o carinho está em cada detalhe.</p>
+        <div class="testi-foot">
+          <span class="testi-name">Lilian A.</span>
+          <span class="testi-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>comentário no Instagram</span>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <span class="testi-quote">“</span>
+        <p class="testi-text">Além de tudo, uma grande artista. Presente lindíssimo, obrigada tia Wilma!</p>
+        <div class="testi-foot">
+          <span class="testi-name">Daniella H.</span>
+          <span class="testi-src"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>stories no Instagram</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p class="footer-line">"Feito à mão, com carinho no detalhe."</p>
+    <div class="cta-group">
+      <a class="btn btn-primary" href="https://wa.me/5561996634060?text=Oi%2C%20Wilma!%20Vi%20seu%20trabalho%20no%20Instagram%20e%20queria%20saber%20mais%20sobre%20as%20pe%C3%A7as%20da%20Ela%20me%20Fez%20%F0%9F%98%8A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+        (61) 99663-4060
+      </a>
+      <a class="btn btn-secondary" href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @ela.me.fez
+      </a>
+    </div>
+    <p class="footer-meta">Ela me Fez · peças artesanais feitas por encomenda</p>
+  </footer>
+
+</div>
+
+<div class="lightbox-overlay" id="lightbox">
+  <div class="lightbox-panel">
+    <div class="lightbox-header">
+      <div>
+        <div class="lightbox-title" id="lb-title">Categoria</div>
+        <div class="lightbox-sub">mais opções dessa linha</div>
+      </div>
+      <button class="lightbox-close" id="lb-close" aria-label="Fechar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="lightbox-scroll" id="lb-scroll"></div>
+    <div class="lightbox-footer">
+      <p class="lightbox-hint">arraste para o lado para ver mais</p>
+      <a class="btn btn-primary" id="lb-wa" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.523 0-10 4.477-10 10 0 1.766.464 3.5 1.345 5.02L2 22l5.096-1.334A9.958 9.958 0 0012.004 22c5.523 0 10-4.477 10-10s-4.477-10-10-10zm0 18.166c-1.607 0-3.183-.432-4.556-1.25l-.327-.194-3.024.792.807-2.948-.213-.303A8.146 8.146 0 013.837 12c0-4.505 3.662-8.166 8.167-8.166 4.505 0 8.166 3.661 8.166 8.166 0 4.505-3.661 8.166-8.166 8.166z"/></svg>
+        <span id="lb-wa-label">Perguntar no WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.segment-card, .testi-card').forEach(el=>io.observe(el));
+
+  const WA_BASE = "https://wa.me/5561996634060?text=";
+  const galleries = {
+    necessaires: {
+      title: "Nécessaires & Bolsas",
+      waText: "Oi, Wilma! Vi as nécessaires no link e queria saber mais. 😊",
+      waLabel: "Perguntar sobre nécessaires",
+      images: [
+        {src:"img/necessaire_floral.jpg", alt:"Nécessaire com estampa floral delicada"},
+        {src:"img/necessaire_aviao.jpg", alt:"Nécessaires com estampa de aviõezinhos"},
+        {src:"img/necessaire_couro.jpg", alt:"Nécessaire em couro sintético liso"},
+        {src:"img/necessaire_transparente.jpg", alt:"Nécessaire transparente com acabamento bege"}
+      ]
+    },
+    maternidade: {
+      title: "Kits Maternidade & Bebê",
+      waText: "Oi, Wilma! Queria saber mais sobre os kits de maternidade e bebê. 😊",
+      waLabel: "Perguntar sobre maternidade",
+      images: [
+        {src:"img/kit_bebe_bosque.jpg", alt:"Kit de panos de boca com bichinhos do bosque"},
+        {src:"img/kit_bebe_urso.jpg", alt:"Kit de panos de boca com estampa de ursinhos"},
+        {src:"img/kit_bebe_cegonha.jpg", alt:"Panos de boca com estampa de cegonha"},
+        {src:"img/kit_bebe_bichinhos.jpg", alt:"Kit de panos com bichinhos variados"}
+      ]
+    },
+    bordados: {
+      title: "Bordados Personalizados",
+      waText: "Oi, Wilma! Queria fazer um bastidor bordado personalizado. 😊",
+      waLabel: "Perguntar sobre bordados",
+      images: [
+        {src:"img/bordado_hoop.jpg", alt:"Bastidor bordado com iniciais e guirlanda floral"},
+        {src:"img/bordado_hoop_mm.jpg", alt:"Bastidor bordado com iniciais em tons azuis"}
+      ]
+    },
+    croche: {
+      title: "Amigurumi em Crochê",
+      waText: "Oi, Wilma! Queria saber mais sobre os amigurumis de crochê. 😊",
+      waLabel: "Perguntar sobre amigurumi",
+      images: [
+        {src:"img/amigurumi_raposa.jpg", alt:"Amigurumi de crochê em formato de raposa"},
+        {src:"img/amigurumi_ursinha.jpg", alt:"Amigurumi de crochê em formato de ursinha"}
+      ]
+    },
+    presentes: {
+      title: "Presentes Personalizados",
+      waText: "Oi, Wilma! Queria saber mais sobre os presentes personalizados. 😊",
+      waLabel: "Perguntar sobre presentes",
+      images: [
+        {src:"img/caderno_receitas.jpg", alt:"Caderno personalizado de receitas de família"},
+        {src:"img/porta_vinho.jpg", alt:"Porta-garrafa de vinho em couro"},
+        {src:"img/presente_planner.jpg", alt:"Planner personalizado de presente"}
+      ]
+    }
+  };
+
+  const overlay = document.getElementById('lightbox');
+  const lbTitle = document.getElementById('lb-title');
+  const lbScroll = document.getElementById('lb-scroll');
+  const lbWa = document.getElementById('lb-wa');
+  const lbWaLabel = document.getElementById('lb-wa-label');
+  const lbClose = document.getElementById('lb-close');
+
+  function openGallery(key){
+    const g = galleries[key];
+    if(!g) return;
+    lbTitle.textContent = g.title;
+    lbWa.href = WA_BASE + encodeURIComponent(g.waText);
+    lbWaLabel.textContent = g.waLabel;
+    lbScroll.innerHTML = "";
+    g.images.forEach(img=>{
+      const el = document.createElement('img');
+      el.src = img.src;
+      el.alt = img.alt;
+      el.loading = "lazy";
+      lbScroll.appendChild(el);
+    });
+    lbScroll.scrollLeft = 0;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeGallery(){
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.segment-photos[data-gallery] a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const key = a.closest('.segment-photos').getAttribute('data-gallery');
+      openGallery(key);
+    });
+  });
+
+  lbClose.addEventListener('click', closeGallery);
+  overlay.addEventListener('click', (e)=>{ if(e.target === overlay) closeGallery(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeGallery(); });
+</script>
+
+</body>
+</html>
