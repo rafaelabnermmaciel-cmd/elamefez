@@ -5,3 +5,16 @@
   for = "/img/*"
   [headers.values]
     Cache-Control = "public, max-age=604800"
+
+# Endereço antigo e "www" vão para o domínio principal
+[[redirects]]
+  from = "https://elamefez.netlify.app/*"
+  to = "https://elamefez.com.br/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.elamefez.com.br/*"
+  to = "https://elamefez.com.br/:splat"
+  status = 301
+  force = true

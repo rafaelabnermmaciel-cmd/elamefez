@@ -2,7 +2,7 @@
 
 Site de vitrine (link da bio do Instagram [@ela.me.fez](https://www.instagram.com/ela.me.fez)) com as peças feitas à mão pela Wilma: nécessaires, kits de maternidade, bordados, amigurumi e presentes personalizados. Todo contato é pelo WhatsApp.
 
-Publicado em: https://elamefez.netlify.app/
+Publicado em: https://elamefez.com.br/
 
 ## Estrutura
 
