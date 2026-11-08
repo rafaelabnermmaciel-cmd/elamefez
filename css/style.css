@@ -676,3 +676,13 @@ em{font-style:normal;color:var(--accent)}
   .pm-info h3{font-size:1.3rem}
 }
 @media (max-width:560px){.site-header .leather-tag{font-size:1.45rem;padding:.42rem 1.2rem .5rem}.header-in{height:64px}}
+/* conversa guiada */
+.cm .cchips{max-width:100%}
+.cm:has(.cchips),.ccards-w{max-width:100%}
+.ccards{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.ccards::-webkit-scrollbar{display:none}
+.ccard{flex:0 0 104px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);text-align:left;transition:border-color .15s,transform .15s}
+.ccard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ccard img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.ccard span{display:block;padding:6px 8px;font-size:.76rem;font-weight:600;line-height:1.2}
+.cact.go{background:var(--night);color:#fff}

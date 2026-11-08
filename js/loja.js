@@ -445,5 +445,6 @@
     clearTimeout(tt); tt = setTimeout(() => (t.hidden = true), 2200);
   }
 
+  window.__loja = { add: addCarrinho, abrirCarrinho, itens: () => carrinho.length };
   renderChips(); renderGrid(); renderCarrinho(); atualizarPagamento(); rota(); retornoPagamento();
 })();

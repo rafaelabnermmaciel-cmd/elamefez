@@ -101,54 +101,234 @@
       b: [["Perguntar à Wilma", "@wa:Oi, Wilma! " + texto]] };
   }
 
-  /* ---------- interface ---------- */
-  const SUGEST = ["Preços e tamanhos", "Quais estampas?", "Formas de pagamento", "Qual o prazo?", "Fazem sob medida?", "Falar com a Wilma"];
+  /* ================= CONVERSA GUIADA ================= */
   const box = $("#chat"), log = $("#chat-log"), form = $("#chat-form"), inp = $("#chat-input");
+  const pick = (a) => a[Math.floor(Math.random() * a.length)];
+  const PROD = (id) => PRODS.find((p) => p.id === id);
+  const NEC = PRODS.filter((p) => p.cat === "necessaires" && p.tamanhos);
+  let S = {};            // estado da conversa
+  let passo = null;      // função que trata a próxima resposta escrita
 
-  function addMsg(quem, html, botoes, chips) {
+  /* ---- mensagens ---- */
+  function bolha(quem, html) {
     const m = document.createElement("div"); m.className = "cm " + quem;
-    const bub = document.createElement("div"); bub.className = "cb";
-    if (quem === "eu") bub.textContent = html; else bub.innerHTML = html;
-    m.appendChild(bub);
-    if (botoes && botoes.length) {
-      const w = document.createElement("div"); w.className = "cacts";
-      botoes.forEach(([rot, alvo]) => {
-        const a = document.createElement("a"); a.textContent = rot; a.className = "cact";
-        if (alvo.startsWith("@wa:")) { a.href = wa(alvo.slice(4)); a.target = "_blank"; a.rel = "noopener"; a.classList.add("wa"); }
-        else if (alvo === "@sacola") { a.href = "#"; a.addEventListener("click", (e) => { e.preventDefault(); fechar(); $("#abrir-carrinho").click(); }); }
-        else if (alvo.startsWith("#")) { a.href = alvo; a.addEventListener("click", () => fechar()); }
-        else { a.href = alvo; a.target = "_blank"; a.rel = "noopener"; }
-        w.appendChild(a);
-      });
-      m.appendChild(w);
+    const b = document.createElement("div"); b.className = "cb";
+    if (quem === "eu") b.textContent = html; else b.innerHTML = html;
+    m.appendChild(b); log.appendChild(m); rolar(); return m;
+  }
+  function rolar() { log.scrollTop = log.scrollHeight; }
+  function digitando(ms) {
+    const d = document.createElement("div"); d.className = "cm bot"; d.innerHTML = '<div class="cb typing"><i></i><i></i><i></i></div>';
+    log.appendChild(d); rolar();
+    return new Promise((r) => setTimeout(() => { d.remove(); r(); }, ms));
+  }
+  /* bot fala uma ou mais mensagens, com "digitando…" proporcional ao tamanho */
+  async function diz(...msgs) {
+    for (const t of msgs) {
+      if (!t) continue;
+      await digitando(Math.min(1300, 350 + t.replace(/<[^>]+>/g, "").length * 9));
+      bolha("bot", t);
     }
-    if (chips) m.appendChild(chipsEl());
-    log.appendChild(m); log.scrollTop = log.scrollHeight;
   }
-  function chipsEl() {
-    const w = document.createElement("div"); w.className = "cchips";
-    SUGEST.forEach((s) => { const b = document.createElement("button"); b.type = "button"; b.textContent = s; b.addEventListener("click", () => perguntar(s)); w.appendChild(b); });
-    return w;
+  /* opções clicáveis (some depois de escolher) */
+  function opcoes(lista, onPick) {
+    const w = document.createElement("div"); w.className = "cm bot"; const c = document.createElement("div"); c.className = "cchips";
+    lista.forEach((o) => {
+      const [rot, val] = Array.isArray(o) ? o : [o, o];
+      const b = document.createElement("button"); b.type = "button"; b.textContent = rot;
+      b.addEventListener("click", () => { w.remove(); bolha("eu", rot); onPick(val, rot); });
+      c.appendChild(b);
+    });
+    w.appendChild(c); log.appendChild(w); rolar(); return w;
   }
-  function perguntar(texto) {
-    texto = String(texto).trim(); if (!texto) return;
-    addMsg("eu", texto);
-    const dig = document.createElement("div"); dig.className = "cm bot"; dig.innerHTML = '<div class="cb typing"><i></i><i></i><i></i></div>';
-    log.appendChild(dig); log.scrollTop = log.scrollHeight;
-    setTimeout(() => { dig.remove(); const r = responder(texto); addMsg("bot", r.t, r.b, r.chips); }, 450);
+  /* cartões com foto (estampas/modelos) */
+  function cartoes(itens, onPick) {
+    const w = document.createElement("div"); w.className = "cm bot ccards-w"; const c = document.createElement("div"); c.className = "ccards";
+    itens.forEach((it) => {
+      const b = document.createElement("button"); b.type = "button"; b.className = "ccard";
+      b.innerHTML = '<img alt="" loading="lazy"><span></span>'; $("img", b).src = it.foto; $("span", b).textContent = it.nome;
+      b.addEventListener("click", () => { w.remove(); bolha("eu", it.nome); onPick(it); });
+      c.appendChild(b);
+    });
+    w.appendChild(c); log.appendChild(w); rolar();
   }
+  function botoes(lista) {
+    const m = document.createElement("div"); m.className = "cm bot"; const w = document.createElement("div"); w.className = "cacts";
+    lista.forEach(([rot, alvo]) => {
+      const a = document.createElement("a"); a.textContent = rot; a.className = "cact";
+      if (alvo.startsWith("@wa:")) { a.href = wa(alvo.slice(4)); a.target = "_blank"; a.rel = "noopener"; a.classList.add("wa"); }
+      else if (alvo === "@sacola") { a.href = "#"; a.classList.add("go"); a.addEventListener("click", (e) => { e.preventDefault(); fechar(); window.__loja && window.__loja.abrirCarrinho(); }); }
+      else if (alvo.startsWith("#")) { a.href = alvo; a.addEventListener("click", () => fechar()); }
+      else { a.href = alvo; a.target = "_blank"; a.rel = "noopener"; }
+      w.appendChild(a);
+    });
+    m.appendChild(w); log.appendChild(m); rolar();
+  }
+  const limparOpcoes = () => log.querySelectorAll(".cchips,.ccards").forEach((e) => e.closest(".cm").remove());
+
+  /* ---- roteiro ---- */
+  async function inicio() {
+    S = {}; passo = null;
+    await diz(pick(["Oi! 😊 Que bom te ver por aqui.", "Oi, tudo bem? 😊 Seja bem-vinda ao ateliê!", "Olá! 💛 Que alegria ter você aqui."]),
+      "Eu ajudo a Wilma a atender por aqui. Me conta: a peça é <b>pra você</b> ou é <b>pra presentear</b> alguém?");
+    opcoes([["Pra mim", "eu"], ["É presente 🎁", "presente"], ["Só tirar uma dúvida", "duvida"]], async (v) => {
+      S.para = v;
+      if (v === "duvida") { await diz("Claro! Pode perguntar o que quiser: preço, tamanho, estampa, pagamento, prazo… ✍️"); passo = null; return; }
+      if (v === "presente") {
+        await diz(pick(["Que delícia dar presente feito à mão! 🎁", "Ah, presente feito à mão é outro nível de carinho! 🎁"]), "Tem alguma ocasião especial?");
+        opcoes([["Aniversário", "aniversário"], ["Casamento / noivado", "casamento"], ["Chá de bebê", "bebê"], ["Só um mimo", "mimo"]], async (o) => {
+          S.ocasiao = o;
+          if (o === "casamento") { await diz("Que lindo! 💍 Para casamento, o mais pedido é o <b>bastidor porta-alianças bordado</b>, com as iniciais e a data do casal."); return personalizada("bastidor-porta-aliancas"); }
+          if (o === "bebê") { await diz("Ai, que fofura! 👶 Para chá de bebê, os <b>kits de panos de boca</b> fazem o maior sucesso, e dá pra colocar o tema do enxoval."); return personalizada("kit-panos-de-boca"); }
+          await diz(pick(["Boa! Deixa eu te mostrar o que sai daqui.", "Perfeito! Olha o que a Wilma faz:"]));
+          tipo();
+        });
+      } else { await diz(pick(["Adoro! Você merece. 😄", "Ótimo, presente pra gente mesma é o melhor! 😄"])); tipo(); }
+    });
+  }
+  function tipo() {
+    diz("O que você está procurando?").then(() => opcoes([["👜 Necessaire", "nec"], ["✏️ Estojo", "estojo"], ["🧵 Bordado", "bastidor-porta-aliancas"], ["🦊 Amigurumi", "amigurumi"], ["👶 Bebê", "kit-panos-de-boca"], ["📖 Caderno de receitas", "caderno-de-receitas"], ["🍷 Porta-vinho", "porta-vinho"], ["🍽️ Jogo americano", "jogo-americano"], ["💡 Tenho outra ideia", "ideia"]], (v) => {
+      if (v === "nec") return necessaire();
+      if (v === "estojo") return estojoFlow();
+      if (v === "ideia") return ideia();
+      personalizada(v);
+    }));
+  }
+
+  /* necessaire: uso → tamanho → estampa → estojo → sacola */
+  async function necessaire() {
+    S.prod = null;
+    await diz(pick(["Boa escolha! As necessaires são o xodó do ateliê. 💛", "Ah, as necessaires! São as mais pedidas. 💛"]),
+      "Pra eu te indicar o tamanho certinho: você vai usar mais pra quê?");
+    opcoes([["Maquiagem", "M"], ["Viagem / mala", "G"], ["Levar na bolsa", "P"], ["Coisinhas miúdas", "PP"], ["Não sei ainda", "?"]], async (v) => {
+      const sug = v === "?" ? null : TAM.find((t) => t.id === v);
+      if (sug) await diz("Pra isso eu iria de <b>" + sug.nome + "</b> (" + sug.medida + "), que sai por <b>" + brl(sug.preco) + "</b>. Mas olha todos os tamanhos:");
+      else await diz("Sem problema! Olha os tamanhos. O preço vale pra qualquer estampa:");
+      opcoes(TAM.map((t) => [t.nome + " · " + t.medida + " · " + brl(t.preco), t.id]), async (id) => {
+        S.tam = TAM.find((t) => t.id === id);
+        await diz(pick(["Anotado! ✍️", "Perfeito!", "Ótimo!"]) + " Agora a parte mais gostosa: <b>a estampa</b>. Toque na que você mais gostou:");
+        cartoes(NEC.map((p) => ({ id: p.id, nome: p.nome.replace(/^Necessaire /, ""), foto: p.fotos[0] })).concat([{ id: "outra", nome: "Outra estampa", foto: "img/nec-floral.jpg" }]), async (it) => {
+          if (it.id === "outra") {
+            S.prod = PROD("necessaire-boho"); S.outra = true;
+            await diz("Tem muitas outras estampas no ateliê! 😍 Me conta o que você imagina (cor, tema, desenho):");
+            passo = async (txt) => { S.obs = "Estampa desejada: " + txt; passo = null; await diz("Que ideia boa! A Wilma te mostra as opções parecidas no WhatsApp."); oferecerEstojo(); };
+            return;
+          }
+          S.prod = PROD(it.id);
+          await diz(pick(["Linda demais! 😍", "Essa é uma graça! 😍", "Ótimo gosto! ✨"]) + " <b>" + S.prod.nome + "</b> no tamanho <b>" + S.tam.nome + "</b>.");
+          oferecerEstojo();
+        });
+      });
+    });
+  }
+  async function oferecerEstojo() {
+    const est = PROD("estojo");
+    await diz("Quer levar o <b>estojo combinando</b> por mais <b>" + brl(est.preco) + "</b>? Fica um kit lindo, ótimo pra presente. 🎀");
+    opcoes([["Quero o kit!", "sim"], ["Só a necessaire", "nao"]], async (v) => {
+      S.kit = v === "sim";
+      await diz(S.kit ? "Ebaa, vai ficar um charme! 💛" : "Tudo bem! 💛", "Quer personalizar algo? Por exemplo: cor do zíper, um nome… Se não, é só tocar em <b>Não, obrigada</b>.");
+      opcoes([["Não, obrigada", ""], ["Quero personalizar", "p"]], async (o) => {
+        if (o === "p") { await diz("Me conta como você quer:"); passo = async (txt) => { S.obs = [S.obs, txt].filter(Boolean).join(" · "); passo = null; fecharNecessaire(); }; return; }
+        fecharNecessaire();
+      });
+    });
+  }
+  async function fecharNecessaire() {
+    const L2 = window.__loja; if (!L2) return;
+    L2.add({ id: S.prod.id, tam: S.tam.id, tamMedida: S.tam.medida, opc: "", opcNome: "", obs: S.obs || "", qtd: 1, preco: S.tam.preco });
+    let total = S.tam.preco;
+    if (S.kit) { const e = PROD("estojo"); L2.add({ id: "estojo", tam: "", tamMedida: "", opc: S.outra ? "Outra (combinar)" : (S.prod.nome.replace(/^Necessaire /, "")), opcNome: "Estampa", obs: "Combinando com a necessaire", qtd: 1, preco: e.preco }); total += e.preco; }
+    finalizar(total);
+  }
+
+  /* estojo sozinho */
+  async function estojoFlow() {
+    const e = PROD("estojo");
+    await diz("O estojo mede 20 × 3 × 4 cm e custa <b>" + brl(e.preco) + "</b>. Serve pra caneta ou pra escova e creme dental. ✏️🪥", "Qual estampa?");
+    opcoes(e.opcoes.itens, async (v) => {
+      window.__loja && window.__loja.add({ id: "estojo", tam: "", tamMedida: "", opc: v, opcNome: "Estampa", obs: "", qtd: 1, preco: e.preco });
+      await diz(pick(["Boa! 😍", "Amei! ✨"]));
+      finalizar(e.preco);
+    });
+  }
+
+  /* peças sob orçamento: pede detalhes → sacola */
+  async function personalizada(id) {
+    const p = PROD(id); S.prod = p;
+    await diz("<b>" + p.nome + "</b>: " + p.desc, "Essa peça é <b>sob orçamento</b>, porque o valor depende dos detalhes. Coloco na sacola e a Wilma te passa o valor certinho antes de você pagar qualquer coisa. 😉");
+    const seguir = async () => {
+      await diz("Me conta os detalhes: " + (p.personalizar ? p.personalizar.toLowerCase() : "como você imagina a peça") + (S.ocasiao ? ", e a data do evento, se tiver" : "") + ".");
+      passo = async (txt) => {
+        passo = null;
+        window.__loja && window.__loja.add({ id: p.id, tam: "", tamMedida: "", opc: S.opc || "", opcNome: p.opcoes ? p.opcoes.nome : "", obs: txt, qtd: 1, preco: null });
+        await diz(pick(["Que lindo, vai ficar especial! 💛", "Anotadinho! 💛"]));
+        finalizar(null);
+      };
+    };
+    if (p.opcoes) {
+      await diz(p.opcoes.nome + ":");
+      opcoes(p.opcoes.itens, async (v) => { S.opc = v; seguir(); });
+    } else seguir();
+  }
+
+  /* outra ideia → sob medida */
+  async function ideia() {
+    await diz("Amo ideias novas! ✂️ Me descreve o que você quer: a peça, tamanho, cores e pra quando precisa.");
+    passo = async (txt) => {
+      passo = null;
+      await diz("Que ideia boa! A Wilma vai adorar. Vou montar a mensagem pra você mandar pra ela pelo WhatsApp com tudo explicadinho:");
+      botoes([["Enviar minha ideia à Wilma", "@wa:Olá, Wilma! Vim pelo site e quero um pedido sob medida ✂️\n\n" + txt]]);
+    };
+  }
+
+  /* encerramento: leva à sacola */
+  async function finalizar(total) {
+    const n = window.__loja ? window.__loja.itens() : 1;
+    await diz("Pronto, coloquei na sua <b>sacola</b>! 🛍️" + (total ? " Por enquanto, <b>" + brl(total) + "</b>." : ""),
+      "Pra finalizar é rapidinho: você coloca seu nome, escolhe <b>Pix</b> ou <b>cartão em até 12x</b>, e o pedido chega direto pra Wilma. " + (total === null ? "Como tem item sob orçamento, ela te confirma o valor antes. 😉" : ""));
+    botoes([["Finalizar pedido", "@sacola"]]);
+    opcoes([["Quero ver mais peças", "mais"], ["Tenho uma dúvida", "duvida"]], async (v) => {
+      if (v === "mais") return tipo();
+      await diz("Claro, pode perguntar! ✍️");
+    });
+  }
+
+  /* ---- texto livre: responde a dúvida e retoma ---- */
+  const GANCHO = ["Posso te ajudar a escolher a sua? 😊", "Quer que eu te ajude a montar o seu pedido?", "Bora escolher a sua peça? 💛"];
+  async function textoLivre(t) {
+    if (passo) return passo(t);
+    const r = responder(t);
+    const intro = /^(Oi|Imagina)/.test(r.t) ? "" : pick(["Boa pergunta! ", "Claro! ", "Te explico: ", ""]);
+    await diz(intro + r.t);
+    if (r.b && r.b.length) botoes(r.b);
+    limparOpcoes();
+    const temSacola = window.__loja && window.__loja.itens() > 0;
+    if (/^(Oi|Imagina)/.test(r.t)) return;
+    if (temSacola) {
+      await diz(pick(["Sua sacola já está separadinha. Quando quiser, é só finalizar! 😉", "Seu pedido está te esperando na sacola. 🛍️"]));
+      botoes([["Finalizar pedido", "@sacola"]]);
+      opcoes([["Ver mais peças", "mais"], ["Tenho outra dúvida", "d"]], async (v) => { if (v === "mais") return tipo(); await diz("Pode mandar! ✍️"); });
+      return;
+    }
+    await diz(pick(GANCHO));
+    opcoes([["Sim, me ajuda!", "s"], ["Tenho outra dúvida", "d"]], async (v) => {
+      if (v === "s") { if (!S.para) return inicio(); return tipo(); }
+      await diz("Pode mandar! ✍️");
+    });
+  }
+
+  /* ---- abrir/fechar ---- */
   let iniciado = false;
   function abrir() {
     box.hidden = false; $("#chat-fab").setAttribute("aria-expanded", "true");
-    if (!iniciado) { iniciado = true; addMsg("bot", "Oi! 😊 Sou a assistente da <b>Ela me Fez</b>. Pergunte sobre preços, tamanhos, estampas, pagamento, prazo ou pedidos sob medida.", null, true); }
-    setTimeout(() => inp.focus(), 50);
+    if (!iniciado) { iniciado = true; inicio(); }
+    setTimeout(() => inp.focus({ preventScroll: true }), 50);
   }
   function fechar() { box.hidden = true; $("#chat-fab").setAttribute("aria-expanded", "false"); }
-
   $("#chat-fab").addEventListener("click", () => (box.hidden ? abrir() : fechar()));
   $("#chat-close").addEventListener("click", fechar);
-  form.addEventListener("submit", (e) => { e.preventDefault(); const t = inp.value; inp.value = ""; perguntar(t); });
+  form.addEventListener("submit", (e) => { e.preventDefault(); const t = inp.value.trim(); if (!t) return; inp.value = ""; bolha("eu", t); textoLivre(t); });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !box.hidden) fechar(); });
 
-  window.__chatResponder = responder; // usado nos testes
+  window.__chatResponder = responder;
 })();
