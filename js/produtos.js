@@ -14,7 +14,7 @@ window.LOJA = {
   instagram: "ela.me.fez",
   // InfinitePay: sua InfiniteTag SEM o "$". Deixe "" para desligar o cartão on-line.
   // É preciso ligar "Habilitar checkout integrado" nas Configurações do Checkout da InfinitePay.
-  infinitepay: "",
+  infinitepay: "rafael-abner-j52",   // TESTE: conta do Rafael. Trocar pela da Wilma.
   // Chave Pix: aparece na sacola quando o cliente escolhe Pix.
   pix: "+5561996634060",       // é o que o botão "copiar" copia (telefone com +55)
   pixExibicao: "(61) 99663-4060",
