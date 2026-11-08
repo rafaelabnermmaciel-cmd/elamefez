@@ -12,6 +12,9 @@ window.LOJA = {
   whatsapp: "5561996634060",
   whatsappExibicao: "(61) 99663-4060",
   instagram: "ela.me.fez",
+  // InfinitePay: sua InfiniteTag SEM o "$". Deixe "" para desligar o cartão on-line.
+  // É preciso ligar "Habilitar checkout integrado" nas Configurações do Checkout da InfinitePay.
+  infinitepay: "",
   // Chave Pix: aparece na sacola quando o cliente escolhe Pix.
   pix: "+5561996634060",       // é o que o botão "copiar" copia (telefone com +55)
   pixExibicao: "(61) 99663-4060",

@@ -331,7 +331,7 @@
         <fieldset class="opt"><legend>Pagamento</legend>
           <div class="opt-list">
             <label class="pill"><input type="radio" name="pagamento" value="Pix" checked><span>Pix</span></label>
-            <label class="pill"><input type="radio" name="pagamento" value="Cartão (link de pagamento)"><span>Cartão (link)</span></label>
+            <label class="pill"><input type="radio" name="pagamento" value="Cartão de crédito"><span>Cartão de crédito</span></label>
           </div>
         </fieldset>
         <div class="pix-box" id="pix-box" hidden>
@@ -343,16 +343,48 @@
           <button type="button" class="btn btn-ghost btn-sm" id="pix-copiar">Copiar</button>
           <p class="pix-obs">Pague só depois que a Wilma confirmar o pedido, o prazo e o valor no WhatsApp.</p>
         </div>
+        <div class="card-box" id="card-box" hidden>
+          <div id="card-online">
+            <b>Pagamento seguro pela InfinitePay</b>
+            <p>Em até 12x no cartão. Você digita os dados do cartão na página da InfinitePay, não neste site. Depois do pagamento, você volta para cá e envia o comprovante para a Wilma com um toque.</p>
+          </div>
+          <div id="card-whats" hidden>
+            <b>A Wilma envia o link do cartão</b>
+            <p>Como a sacola tem peças sob orçamento, a Wilma confirma o valor final no WhatsApp e te manda o link para pagar no cartão em até 12x.</p>
+          </div>
+        </div>
         <label>Observações (opcional)<textarea name="obs" rows="2" placeholder="É para presente? Alguma data especial?"></textarea></label>
         <p class="form-err" id="checkout-err" role="alert" hidden></p>
-        <button class="btn btn-wa btn-block" type="submit">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.9 13.9c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
-          Enviar pedido pelo WhatsApp
+        <button class="btn btn-wa btn-block" type="submit" id="checkout-btn">
+          <span id="checkout-wa-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.9 13.9c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg></span>
+          <svg id="checkout-lock-ico" hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+          <span id="checkout-btn-txt">Enviar pedido pelo WhatsApp</span>
         </button>
-        <p class="muted small center">Nada é cobrado agora. A Wilma confirma tudo com você antes.</p>
+        <p class="muted small center" id="checkout-nota">Nada é cobrado agora. A Wilma confirma tudo com você antes.</p>
       </form>
     </div>
   </aside>
+</div>
+
+<!-- Volta do pagamento -->
+<div class="overlay" id="pago-overlay" hidden>
+  <div class="modal modal-sm" role="dialog" aria-modal="true" aria-labelledby="pago-titulo">
+    <button class="x" data-fechar aria-label="Fechar">×</button>
+    <div id="pago-ok" hidden>
+      <div class="pago-ico ok">✓</div>
+      <h3 id="pago-titulo">Pagamento aprovado!</h3>
+      <p class="pago-valor" id="pago-valor"></p>
+    </div>
+    <div id="pago-pend">
+      <div class="pago-ico">…</div>
+      <h3>Recebemos seu pedido</h3>
+      <p>Ainda não conseguimos confirmar o pagamento. Se você pagou, envie o comprovante para a Wilma.</p>
+    </div>
+    <p class="muted small">Pedido <b id="pago-num"></b></p>
+    <p><b>Último passo:</b> envie o pedido para a Wilma no WhatsApp. Ela confirma o prazo de produção e a entrega.</p>
+    <a class="btn btn-wa btn-block" id="pago-wa" target="_blank" rel="noopener">Enviar pedido para a Wilma</a>
+    <a class="pago-recibo" id="pago-recibo" target="_blank" rel="noopener" hidden>Ver comprovante</a>
+  </div>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>

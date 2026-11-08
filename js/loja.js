@@ -230,6 +230,7 @@
     $("#checkout").hidden = n === 0;
     $("#cart-subtotal").textContent = fmt(sub);
     $("#cart-orc-note").hidden = !orc;
+    if (typeof atualizarPagamento === "function" && ck) atualizarPagamento();
 
     const ul = $("#cart-list"); ul.innerHTML = "";
     carrinho.forEach((i, idx) => {
@@ -273,14 +274,14 @@
     }
   });
 
-  $("#checkout").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const f = e.target, err = $("#checkout-err");
-    const nome = f.nome.value.trim();
-    if (!nome) { err.textContent = "Coloque seu nome para a Wilma saber quem é."; err.hidden = false; f.nome.focus(); return; }
-    err.hidden = true;
+  /* ---------- Finalizar pedido ---------- */
+  const ck = $("#checkout"), pixBox = $("#pix-box"), cardBox = $("#card-box");
+  const IP = L.infinitepay;                      // InfiniteTag (sem $). Vazio = sem cartão on-line
+  const KEY_PED = "elamefez-pedido";
+  const cartaoOnline = () => !!IP && !totais().orc;
+
+  function montarPedido(f, num, pagamento) {
     const { sub, orc } = totais();
-    const num = "EMF-" + Date.now().toString(36).slice(-5).toUpperCase();
     const linhas = ["Olá, Wilma! Quero fazer um pedido pelo site 🧵", "", "*Pedido " + num + "*", ""];
     carrinho.forEach((i, k) => {
       const p = byId(i.id);
@@ -290,21 +291,30 @@
       linhas.push("   " + (i.preco === null ? "Valor: sob orçamento" : "Valor: " + fmt(i.preco * i.qtd)));
     });
     linhas.push("", "*Subtotal:* " + fmt(sub) + (orc ? " + itens sob orçamento" : ""));
-    linhas.push("", "*Nome:* " + nome);
+    linhas.push("", "*Nome:* " + f.nome.value.trim());
     if (f.local.value.trim()) linhas.push("*Cidade/bairro:* " + f.local.value.trim());
     linhas.push("*Entrega:* " + f.entrega.value);
-    linhas.push("*Pagamento:* " + f.pagamento.value);
+    linhas.push("*Pagamento:* " + pagamento);
     if (f.obs.value.trim()) linhas.push("*Observações:* " + f.obs.value.trim());
-    linhas.push("", "Aguardo a confirmação de prazo e frete. Obrigada! 💛");
-    window.open(waLink(linhas.join("\n")), "_blank", "noopener");
-    toast("Abrindo o WhatsApp…");
-  });
-
-  /* ---------- Pix ---------- */
-  const pixBox = $("#pix-box"), ck = $("#checkout");
-  function atualizarPix() {
-    pixBox.hidden = !L.pix || ck.pagamento.value !== "Pix";
+    return linhas;
   }
+
+  function atualizarPagamento() {
+    const pag = ck.pagamento.value;
+    pixBox.hidden = !L.pix || pag !== "Pix";
+    cardBox.hidden = pag !== "Cartão de crédito";
+    const online = pag === "Cartão de crédito" && cartaoOnline();
+    $("#card-online").hidden = !online;
+    $("#card-whats").hidden = online;
+    $("#checkout-btn-txt").textContent = online ? "Pagar com cartão" : "Enviar pedido pelo WhatsApp";
+    $("#checkout-wa-ico").hidden = online;
+    $("#checkout-lock-ico").hidden = !online;
+    $("#checkout-nota").textContent = online
+      ? "Você será levado à página segura da InfinitePay. O cartão é digitado lá, não neste site."
+      : "Nada é cobrado agora. A Wilma confirma tudo com você antes.";
+  }
+  ck.addEventListener("change", (e) => { if (e.target.name === "pagamento") atualizarPagamento(); });
+
   if (L.pix) {
     $("#pix-tipo").textContent = L.pixTipo || "chave";
     $("#pix-chave").textContent = L.pixExibicao || L.pix;
@@ -314,8 +324,91 @@
       catch (_) { prompt("Copie a chave Pix:", L.pix); }
     });
   }
-  ck.addEventListener("change", (e) => { if (e.target.name === "pagamento") atualizarPix(); });
-  atualizarPix();
+
+  ck.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const f = e.target, err = $("#checkout-err");
+    if (!f.nome.value.trim()) { err.textContent = "Coloque seu nome para a Wilma saber quem é."; err.hidden = false; f.nome.focus(); return; }
+    err.hidden = true;
+    const num = "EMF-" + Date.now().toString(36).slice(-6).toUpperCase();
+    const pag = f.pagamento.value;
+
+    if (pag === "Cartão de crédito" && cartaoOnline()) {
+      const btn = $("#checkout-btn"); btn.disabled = true; $("#checkout-btn-txt").textContent = "Abrindo pagamento seguro…";
+      const linhas = montarPedido(f, num, "Cartão de crédito (pago pelo site)");
+      const payload = {
+        handle: IP,
+        order_nsu: num,
+        redirect_url: location.origin + location.pathname,
+        items: carrinho.map((i) => {
+          const d = descItem(i);
+          return { quantity: i.qtd, price: Math.round(i.preco * 100), description: (byId(i.id).nome + (d ? " · " + d : "")).slice(0, 120) };
+        }),
+        customer: { name: f.nome.value.trim() },
+      };
+      try {
+        const r = await fetch("https://api.checkout.infinitepay.io/links", {
+          method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload),
+        });
+        const data = await r.json().catch(() => ({}));
+        if (!r.ok || !data.url) throw new Error(data.message || data.error || ("HTTP " + r.status));
+        try { localStorage.setItem(KEY_PED, JSON.stringify({ num, linhas, total: totais().sub })); } catch (_) {}
+        location.href = data.url;
+        return;
+      } catch (x) {
+        btn.disabled = false; atualizarPagamento();
+        err.textContent = "Não conseguimos abrir o pagamento com cartão agora. Toque em “Pix” ou envie pelo WhatsApp que a Wilma te manda o link.";
+        err.hidden = false;
+        console.error("InfinitePay:", x);
+        return;
+      }
+    }
+
+    const pagTxt = pag === "Cartão de crédito" ? "Cartão de crédito (enviar link)" : pag;
+    const linhas = montarPedido(f, num, pagTxt);
+    linhas.push("", "Aguardo a confirmação de prazo e frete. Obrigada! 💛");
+    window.open(waLink(linhas.join("\n")), "_blank", "noopener");
+    toast("Abrindo o WhatsApp…");
+  });
+
+  /* ---------- Volta do pagamento (InfinitePay) ---------- */
+  async function retornoPagamento() {
+    const q = new URLSearchParams(location.search);
+    const nsu = q.get("order_nsu");
+    if (!nsu) return;
+    let ped = null;
+    try { ped = JSON.parse(localStorage.getItem(KEY_PED) || "null"); } catch (_) {}
+    history.replaceState(null, "", location.pathname + location.hash);
+    const ov = $("#pago-overlay"); ov.hidden = false; document.body.style.overflow = "hidden";
+    $("#pago-num").textContent = nsu;
+    const recibo = q.get("receipt_url");
+    if (recibo) { $("#pago-recibo").href = recibo; $("#pago-recibo").hidden = false; }
+    let status = "verificando";
+    try {
+      const r = await fetch("https://api.checkout.infinitepay.io/payment_check", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ handle: IP, order_nsu: nsu, transaction_nsu: q.get("transaction_nsu"), slug: q.get("slug") }),
+      });
+      const d = await r.json();
+      status = d.paid ? "pago" : "pendente";
+      if (d.paid) {
+        $("#pago-valor").textContent = fmt((d.paid_amount || d.amount) / 100) + (d.installments > 1 ? " em " + d.installments + "x" : "") +
+          (d.capture_method === "pix" ? " · Pix" : " · cartão");
+      }
+    } catch (_) { status = "desconhecido"; }
+    $("#pago-ok").hidden = status !== "pago";
+    $("#pago-pend").hidden = status === "pago";
+    if (status === "pago") { carrinho = []; salvar(); renderCarrinho(); }
+
+    const linhas = ped && ped.num === nsu ? ped.linhas.slice() : ["Olá, Wilma! Fiz um pedido pelo site 🧵", "", "*Pedido " + nsu + "*"];
+    linhas.push("", status === "pago" ? "✅ *Pagamento aprovado* " + ($("#pago-valor").textContent || "") : "⏳ Pagamento ainda não confirmado");
+    if (recibo) linhas.push("Comprovante: " + recibo);
+    linhas.push("", "Aguardo a confirmação do prazo. Obrigada! 💛");
+    $("#pago-wa").href = waLink(linhas.join("\n"));
+  }
+  $("#pago-overlay").addEventListener("click", (e) => {
+    if (e.target.id === "pago-overlay" || e.target.closest("[data-fechar]")) { $("#pago-overlay").hidden = true; document.body.style.overflow = ""; }
+  });
 
   /* ---------- Sob medida ---------- */
   $("#form-medida").addEventListener("submit", (e) => {
@@ -352,5 +445,5 @@
     clearTimeout(tt); tt = setTimeout(() => (t.hidden = true), 2200);
   }
 
-  renderChips(); renderGrid(); renderCarrinho(); rota();
+  renderChips(); renderGrid(); renderCarrinho(); atualizarPagamento(); rota(); retornoPagamento();
 })();
