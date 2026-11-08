@@ -862,3 +862,6 @@ label,fieldset.opt legend{font-size:14px}
   .modal fieldset.opt{gap:4px}
 }
 label.pill{min-height:0}
+/* topo: Instagram só com o ícone */
+.ig-btn span{display:none}
+.ig-btn{width:42px;height:42px;padding:0;justify-content:center}
