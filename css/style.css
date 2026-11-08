@@ -772,3 +772,61 @@ label.pill:not(:has(.arr)),label.pill{padding:0}
   .hero-photos{min-height:380px}
   .hp1{width:62%}
 }
+
+/* =========================================================
+   v3 — tamanhos padronizados (base 16px; acessibilidade WCAG,
+   Apple HIG e Material: toque ≥ 44px, texto ≥ 14px, campos 16px)
+   ========================================================= */
+html{font-size:16px}
+body{font-size:16px;line-height:1.55}
+.nav a{font-size:15px}
+.cart-btn,.ig-btn{font-size:14px;min-height:42px;padding:8px 14px}
+.chip{font-size:14px;min-height:40px;padding:8px 16px}
+.prod-body h3{font-size:15px;line-height:1.3}
+.prod-price{font-size:15px}
+.prod-price small{font-size:12px}
+.prod-cat{font-size:12px}
+.badge,.prod-count{font-size:11px}
+.hero-copy p{font-size:17px}
+.hero-notes span{font-size:14px}
+.head2 p,.sizes-text p,.custom2-a p{font-size:16px}
+.kicker{font-size:12px}
+.faq summary{font-size:16px}
+.faq details p{font-size:15px}
+.steps2 p,.oc p,.sig li,.trio-a p{font-size:15px}
+.testi figcaption{font-size:13px}
+.size-row{font-size:15px}
+.pill{font-size:15px;min-height:46px}
+input,select,textarea{font-size:16px}
+label,fieldset.opt legend{font-size:14px}
+.custom2-b label{font-size:12px}
+.pm-desc{font-size:15px}
+#pm-tamanhos label.pill span,.opt-list label.pill span{font-size:14px;min-height:44px;justify-content:center}
+.opt-list label.pill span small{font-size:12px}
+.pm-share{font-size:14px}
+.ci h4{font-size:15px}.ci p{font-size:13px}
+.cb{font-size:15px}
+.cchips button,.cact{font-size:14px;min-height:38px}
+.ccard span{font-size:13px}
+.chat-hint{font-size:14px;white-space:nowrap;max-width:none;padding:10px 32px 10px 14px}
+.footer-links a{font-size:15px}
+.footer-meta{font-size:13px}
+@media (max-width:860px){.cart-btn,.ig-btn{width:44px;height:44px;padding:0;justify-content:center}}
+@media (max-width:560px){
+  html,body{font-size:16px}
+  .hero-copy h1{font-size:30px}
+  .hero-copy p{font-size:16px}
+  .head2 h2{font-size:28px}
+  .prod-body h3,.prod-price{font-size:14px}
+  .chip{font-size:14px}
+  .pill{font-size:15px}
+  .steps2 i{font-size:40px}
+  .chat-hint{font-size:13px;right:74px;bottom:86px}
+  .site-header .leather-tag{font-size:22px}
+}
+#pm-tamanhos label.pill span{font-weight:700;font-size:15px;line-height:1.25;padding:8px 4px}
+#pm-tamanhos label.pill span small{white-space:pre-line;font-weight:500;font-size:12px;line-height:1.35;display:block;margin-top:2px}
+#pm-tamanhos .opt-list{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px}
+#pm-tamanhos label.pill{width:100%}
+#pm-tamanhos label.pill span{flex-direction:row;justify-content:space-between;align-items:center;text-align:left;padding:9px 12px;min-height:48px}
+#pm-tamanhos label.pill span small{margin:0;text-align:right}

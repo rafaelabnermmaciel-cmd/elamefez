@@ -115,7 +115,7 @@
     const ft = $("#pm-tamanhos");
     if (p.tamanhos) {
       ft.hidden = false;
-      pillGroup(ft, "tam", p.tamanhos.map((t) => ({ value: t.id, label: t.nome + " · " + fmt(t.preco), sub: t.medida })));
+      pillGroup(ft, "tam", p.tamanhos.map((t) => ({ value: t.id, label: t.nome, sub: fmt(t.preco) + "\n" + t.medida })));
     } else ft.hidden = true;
 
     // opções
