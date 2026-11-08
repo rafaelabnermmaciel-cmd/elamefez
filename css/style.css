@@ -675,3 +675,4 @@ em{font-style:normal;color:var(--accent)}
   .cart-bar{height:50px;bottom:14px;right:74px;font-size:.9rem}
   .pm-info h3{font-size:1.3rem}
 }
+@media (max-width:560px){.site-header .leather-tag{font-size:1.45rem;padding:.42rem 1.2rem .5rem}.header-in{height:64px}}
