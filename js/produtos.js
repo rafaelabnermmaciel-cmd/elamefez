@@ -43,7 +43,7 @@ window.PRODUTOS = [
     cat: "necessaires",
     selo: "mais pedida",
     desc: "Material sintético texturizado em bordô, forro interno impermeável, zíper bege e etiqueta de couro “Ela me Fez”. Elegante para o dia a dia e para viagem.",
-    fotos: ["img/nec-bordo-p.jpg", "img/nec-bordo-m.jpg", "img/nec-bordo-g.jpg"],
+    fotos: ["img/nec-bordo-g.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
   {
@@ -59,7 +59,7 @@ window.PRODUTOS = [
     nome: "Necessaire Floral Delicada",
     cat: "necessaires",
     desc: "Estampa floral suave em tons de lavanda e verde. Combina com o estojo da mesma estampa e fica linda de presente.",
-    fotos: ["img/nec-floral-kit.jpg", "img/nec-floral.jpg"],
+    fotos: ["img/nec-floral.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
   {
@@ -94,33 +94,18 @@ window.PRODUTOS = [
     fotos: ["img/nec-couro.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
-  {
-    id: "necessaire-branca-alca",
-    nome: "Necessaire Branca com Alça",
-    cat: "necessaires",
-    desc: "Branca com estampa delicada e alça de mão verde-oliva.",
-    fotos: ["img/nec-branca-alca.jpg"],
-    tamanhos: TAM_NECESSAIRE,
-  },
-  {
-    id: "necessaire-cristal",
-    nome: "Necessaire Cristal",
-    cat: "necessaires",
-    desc: "Plástico cristal transparente com acabamento bege. Ideal para viagem e inspeção de bagagem. (Modelo sem forro interno.)",
-    fotos: ["img/nec-cristal.jpg"],
-    tamanhos: TAM_NECESSAIRE,
-  },
+
+
   {
     id: "estojo",
     nome: "Estojo",
     cat: "necessaires",
     desc: "20 × 3 × 4 cm. Porta-caneta ou porta-escova e creme dental. Escolha a estampa para combinar com a sua necessaire.",
-    fotos: ["img/nec-floral-kit.jpg", "img/estojo-bordo.jpg"],
+    fotos: ["img/nec-floral-kit.jpg"],
     preco: 20,
     opcoes: {
       nome: "Estampa",
       itens: ["Bordô", "Floral delicada", "Boho", "Corações", "Poá cinza", "Aviõezinhos", "Marrom", "Outra (combinar)"],
-      fotos: [1, 0, null, null, null, null, null, null],
     },
   },
 
@@ -190,14 +175,5 @@ window.PRODUTOS = [
     personalizar: "Quantidade de lugares e estampas",
   },
 
-  /* ---------------- SOB MEDIDA ---------------- */
-  {
-    id: "vestido-sob-medida",
-    nome: "Vestido Infantil Sob Medida",
-    cat: "sob-medida",
-    desc: "Vestidos de princesa em tule e outras peças de costura feitas exatamente para quem vai usar.",
-    fotos: ["img/vestido-tule.jpg"],
-    preco: null,
-    personalizar: "Idade/medidas, cor e personagem",
-  },
+
 ];
