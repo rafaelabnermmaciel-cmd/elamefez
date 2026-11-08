@@ -1,6 +1,6 @@
 {
-  "name": "Ela me Fez · Ateliê Wilma Virgínia",
-  "short_name": "Ela me Fez",
+  "name": "Ela me Fez Ateliê",
+  "short_name": "Ela me Fez Ateliê",
   "description": "Necessaires, bordados, amigurumis e presentes feitos à mão.",
   "lang": "pt-BR",
   "start_url": "/?app=1",
@@ -9,8 +9,23 @@
   "background_color": "#F5EFE6",
   "theme_color": "#F5EFE6",
   "icons": [
-    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ]
 }
