@@ -171,15 +171,6 @@ window.PRODUTOS = [
     personalizar: "Título da capa e nome da família",
   },
   {
-    id: "planner-personalizado",
-    nome: "Planner Personalizado",
-    cat: "presentes",
-    desc: "Planner com capa personalizada com nome e tema. Presente útil e cheio de significado.",
-    fotos: ["img/planner.jpg"],
-    preco: null,
-    personalizar: "Nome, tema e cores da capa",
-  },
-  {
     id: "porta-vinho",
     nome: "Porta-Vinho em Couro",
     cat: "presentes",
