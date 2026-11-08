@@ -13,10 +13,11 @@ window.LOJA = {
   whatsappExibicao: "(61) 99663-4060",
   instagram: "ela.me.fez",
   // Chave Pix: aparece na sacola quando o cliente escolhe Pix.
-  pix: "34072349100",          // só números (é o que o botão "copiar" copia)
-  pixExibicao: "340.723.491-00",
-  pixTipo: "CPF",
-  pixNome: "Wilma Virgínia",
+  pix: "+5561996634060",       // é o que o botão "copiar" copia (telefone com +55)
+  pixExibicao: "(61) 99663-4060",
+  pixTipo: "telefone",
+  pixNome: "Wilma Virgínia Alves Ribeiro Assunção",
+  pixBanco: "Caixa Econômica Federal",
 };
 
 /* Tabela de tamanhos das necessaires (do catálogo oficial) */

@@ -308,7 +308,7 @@
   if (L.pix) {
     $("#pix-tipo").textContent = L.pixTipo || "chave";
     $("#pix-chave").textContent = L.pixExibicao || L.pix;
-    $("#pix-nome").textContent = L.pixNome ? "em nome de " + L.pixNome : "";
+    $("#pix-nome").textContent = [L.pixNome, L.pixBanco].filter(Boolean).join(" · ");
     $("#pix-copiar").addEventListener("click", async () => {
       try { await navigator.clipboard.writeText(L.pix); toast("Chave Pix copiada!"); }
       catch (_) { prompt("Copie a chave Pix:", L.pix); }
