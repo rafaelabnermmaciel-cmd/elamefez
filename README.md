@@ -25,4 +25,8 @@ Abra o `index.html` no navegador, ou rode `python3 -m http.server` nesta pasta e
 
 ## Deploy
 
-No Netlify: *Add new site → Import from Git → elamefez*, sem comando de build e com a pasta de publicação `.`. Cada push na branch `main` publica o site automaticamente.
+Hospedado no **GitHub Pages** (Settings → Pages → *Deploy from a branch* → `main` / `(root)`). Cada push na `main` publica o site em 1–2 minutos.
+
+- `CNAME` define o domínio `elamefez.com.br`.
+- `.nojekyll` faz o GitHub servir os arquivos como estão.
+- DNS no Registro.br: registro `A` do domínio apontando para `185.199.108.153` (GitHub Pages).
