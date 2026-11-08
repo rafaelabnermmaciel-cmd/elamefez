@@ -319,7 +319,13 @@
 
   /* ---- abrir/fechar ---- */
   let iniciado = false;
+  const hint = $("#chat-hint");
+  try { if (!sessionStorage.getItem("emf-hint")) setTimeout(() => { if (box.hidden && !iniciado) hint.hidden = false; }, 6000); } catch (_) {}
+  const tirarHint = () => { hint.hidden = true; try { sessionStorage.setItem("emf-hint", "1"); } catch (_) {} };
+  $("button", hint).addEventListener("click", (e) => { e.stopPropagation(); tirarHint(); });
+  hint.addEventListener("click", () => { tirarHint(); abrir(); });
   function abrir() {
+    tirarHint();
     box.hidden = false; $("#chat-fab").setAttribute("aria-expanded", "true");
     if (!iniciado) { iniciado = true; inicio(); }
     setTimeout(() => inp.focus({ preventScroll: true }), 50);

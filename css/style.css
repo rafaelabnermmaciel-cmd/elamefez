@@ -686,3 +686,19 @@ em{font-style:normal;color:var(--accent)}
 .ccard img{width:100%;aspect-ratio:1/1;object-fit:cover}
 .ccard span{display:block;padding:6px 8px;font-size:.76rem;font-weight:600;line-height:1.2}
 .cact.go{background:var(--night);color:#fff}
+/* v2.6: assistente com bonequinha */
+.chat-fab,.chat-fab:hover{background:none;border:0;padding:0;width:62px;height:62px;border-radius:50%;box-shadow:0 10px 24px -8px rgba(90,56,38,.55);filter:none;bottom:86px;right:16px}
+.chat-fab img{width:62px;height:62px;border-radius:50%;display:block;transition:transform .2s}
+.chat-fab:hover img{transform:rotate(-6deg) scale(1.05)}
+.chat-q{position:absolute;top:-4px;right:-4px;width:24px;height:24px;border-radius:50%;background:#7A2E3B;color:#fff;font-weight:800;font-size:.85rem;display:grid;place-items:center;border:2px solid #fff;animation:qpulse 2.4s infinite}
+@keyframes qpulse{0%,70%,100%{transform:scale(1)}80%{transform:scale(1.18)}}
+.chat-fab[aria-expanded="true"] .chat-q{display:none}
+.chat-hint{position:fixed;right:88px;bottom:100px;z-index:46;background:#fff;color:var(--ink);padding:10px 30px 10px 14px;border-radius:16px 16px 4px 16px;font-size:.88rem;font-weight:600;box-shadow:0 10px 24px -10px rgba(46,38,34,.4);cursor:pointer;animation:pop .3s;max-width:220px}
+.chat-hint button{position:absolute;top:2px;right:6px;font-size:1.1rem;color:var(--muted)}
+.chat-ava{width:42px;height:42px;border-radius:50%;flex:none}
+.chat-head .on{display:inline-block;width:7px;height:7px;border-radius:50%;background:#4ADE80;margin-right:3px;vertical-align:middle}
+@media (max-width:560px){
+  .chat-fab,.chat-fab:hover{width:56px;height:56px;bottom:74px;right:12px;padding:0}
+  .chat-fab img{width:56px;height:56px}
+  .chat-hint{right:76px;bottom:84px;font-size:.82rem}
+}
