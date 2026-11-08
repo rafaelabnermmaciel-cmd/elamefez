@@ -1,32 +1,42 @@
 # Ela me Fez · Ateliê Wilma Virgínia
 
-Site de vitrine (link da bio do Instagram [@ela.me.fez](https://www.instagram.com/ela.me.fez)) com as peças feitas à mão pela Wilma: nécessaires, kits de maternidade, bordados, amigurumi e presentes personalizados. Todo contato é pelo WhatsApp.
+Loja on-line das peças feitas à mão pela Wilma: necessaires (PP, P, M, G), estojos, bordados, amigurumis, kits de bebê e presentes personalizados.
+O cliente escolhe tamanho e estampa, coloca na sacola e envia o pedido **pronto pelo WhatsApp**. Também há formulário de **pedido sob medida**.
 
-Publicado em: https://elamefez.com.br/
+Site: https://elamefez.com.br/
 
 ## Estrutura
 
 ```
-index.html     página única (HTML + CSS + JS, sem build)
-favicon.png    ícone da aba
-img/           fotos das peças e og-image.jpg (prévia ao compartilhar o link)
-netlify.toml   configuração do deploy no Netlify
+index.html        página da loja
+css/style.css     visual
+js/produtos.js    CATÁLOGO: produtos, preços, fotos, tamanhos, WhatsApp e Pix
+js/loja.js        funcionamento (catálogo, sacola, pedido no WhatsApp)
+img/              fotos (até ~1100 px, ~100 KB cada)
+CNAME             domínio elamefez.com.br (GitHub Pages)
 ```
 
-## Como editar
+## Como editar o catálogo
 
-- **Textos, número do WhatsApp e depoimentos:** direto no `index.html`.
-- **Adicionar foto a uma categoria:** coloque o `.jpg` em `img/` e acrescente uma linha na lista `images` da categoria, dentro do objeto `galleries` no final do `index.html`. A foto aparece na galeria que abre ao tocar nas fotos do cartão.
-- Prefira fotos com no máximo ~1200 px de largura e até ~150 KB para o site carregar rápido no celular.
+Tudo fica em `js/produtos.js`:
 
-## Como ver localmente
+- **Mudar preço das necessaires:** altere `TAM_NECESSAIRE` (vale para todas as estampas).
+- **Nova peça:** copie um bloco `{ ... }` da lista `PRODUTOS`, troque `id` (sem espaço/acento), `nome`, `cat`, `desc`, `fotos`.
+  - Com preço fixo: `preco: 35`. Sob orçamento: `preco: null`. Com tamanhos: `tamanhos: TAM_NECESSAIRE`.
+  - Escolhas (estampa, modelo, tema): `opcoes: { nome: "Estampa", itens: ["A", "B"] }`.
+  - Campo de personalização: `personalizar: "Nome e data"`.
+  - Selo no cartão: `selo: "novidade"`.
+- **Pix:** preencha `pix` em `window.LOJA`.
 
-Abra o `index.html` no navegador, ou rode `python3 -m http.server` nesta pasta e acesse http://localhost:8000.
+## Links para divulgar
 
-## Deploy
+- Uma peça: `https://elamefez.com.br/#p/necessaire-bordo` (o final é o `id` do produto)
+- Uma categoria: `https://elamefez.com.br/#c/necessaires` (`bordados`, `croche`, `maternidade`, `presentes`, `casa`, `sob-medida`)
+- Dentro de cada peça há o botão **"Copiar link desta peça"**.
 
-Hospedado no **GitHub Pages** (Settings → Pages → *Deploy from a branch* → `main` / `(root)`). Cada push na `main` publica o site em 1–2 minutos.
+## Publicação
 
-- `CNAME` define o domínio `elamefez.com.br`.
-- `.nojekyll` faz o GitHub servir os arquivos como estão.
-- DNS no Registro.br: registro `A` do domínio apontando para `185.199.108.153` (GitHub Pages).
+GitHub Pages (Settings → Pages → `main` / root). Cada push na `main` publica em 1–2 minutos.
+DNS no Registro.br: `A` → `185.199.108.153`.
+
+Para ver localmente: `python3 -m http.server` nesta pasta e abra http://localhost:8000.
