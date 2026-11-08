@@ -635,3 +635,43 @@ em{font-style:normal;color:var(--accent)}
 .chat-fab{background:linear-gradient(160deg,#C08A5C,#8E5E3A);color:#fff;border:2px solid #fff;box-shadow:0 10px 24px -6px rgba(124,83,51,.6)}
 .chat-fab:hover{filter:brightness(1.05)}
 @media (max-width:560px){.chat-fab-txt{display:inline}.chat-fab{padding:0 16px 0 12px}}
+/* v2.5: celular mais compacto e elegante */
+@media (max-width:560px){
+  html{font-size:14px}
+  body{line-height:1.5}
+  .header-in{height:58px}
+  .leather-tag{font-size:1.05rem;padding:.34rem .9rem .4rem}
+  .cart-btn,.ig-btn{padding:7px 9px}
+  .cart-btn svg,.ig-btn svg{width:18px;height:18px}
+  .band{padding:52px 0}
+  .head2{margin-bottom:24px}
+  .head2 h2{font-size:1.85rem}
+  .kicker{font-size:.66rem;margin-bottom:10px}
+  .chips{gap:6px;padding-bottom:10px}
+  .chip{padding:6px 12px;font-size:.84rem}
+  .grid{gap:10px}
+  .prod{border-radius:16px}
+  .prod-body{padding:9px 11px 12px;gap:2px}
+  .prod-body h3{font-size:.88rem;line-height:1.25}
+  .prod-price{font-size:.88rem;padding-top:4px}
+  .prod-price small{font-size:.72rem}
+  .badge{font-size:.6rem;padding:4px 8px;left:8px;top:8px}
+  .prod-count{font-size:.62rem}
+  .pill{font-size:.88rem;padding:7px 7px 7px 18px}
+  .pill .arr{width:30px;height:30px}
+  .pill:not(:has(.arr)){padding:11px 18px}
+  .hero-copy h1{font-size:1.95rem}
+  .hero-copy p{font-size:.95rem}
+  .hero-notes span{font-size:.8rem}
+  .steps2 i{font-size:2.4rem}
+  .statement{font-size:1.6rem}
+  .testi blockquote{font-size:1.15rem}
+  .faq summary{padding:14px 44px 14px 16px;font-size:.92rem}
+  .size-row{padding:10px 12px;font-size:.85rem}
+  .fab-wa{width:50px;height:50px;right:14px;bottom:14px}
+  .fab-wa svg{width:26px;height:26px}
+  .chat-fab{height:42px;right:14px;bottom:74px;padding:0 13px 0 10px;font-size:.82rem;gap:6px}
+  .chat-fab svg{width:20px;height:20px}
+  .cart-bar{height:50px;bottom:14px;right:74px;font-size:.9rem}
+  .pm-info h3{font-size:1.3rem}
+}
