@@ -43,7 +43,7 @@ window.PRODUTOS = [
     cat: "necessaires",
     selo: "mais pedida",
     desc: "Material sintético texturizado em bordô, forro interno impermeável, zíper bege e etiqueta de couro “Ela me Fez”. Elegante para o dia a dia e para viagem.",
-    fotos: ["img/nec-bordo-m.jpg", "img/nec-bordo-p.jpg", "img/nec-bordo-g.jpg"],
+    fotos: ["img/nec-bordo-p.jpg", "img/nec-bordo-m.jpg", "img/nec-bordo-g.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
   {
@@ -59,7 +59,7 @@ window.PRODUTOS = [
     nome: "Necessaire Floral Delicada",
     cat: "necessaires",
     desc: "Estampa floral suave em tons de lavanda e verde. Combina com o estojo da mesma estampa e fica linda de presente.",
-    fotos: ["img/nec-floral.jpg", "img/nec-floral-kit.jpg"],
+    fotos: ["img/nec-floral-kit.jpg", "img/nec-floral.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
   {
@@ -115,12 +115,12 @@ window.PRODUTOS = [
     nome: "Estojo",
     cat: "necessaires",
     desc: "20 × 3 × 4 cm. Porta-caneta ou porta-escova e creme dental. Escolha a estampa para combinar com a sua necessaire.",
-    fotos: ["img/estojo-bordo.jpg", "img/nec-floral-kit.jpg"],
+    fotos: ["img/nec-floral-kit.jpg", "img/estojo-bordo.jpg"],
     preco: 20,
     opcoes: {
       nome: "Estampa",
       itens: ["Bordô", "Floral delicada", "Boho", "Corações", "Poá cinza", "Aviõezinhos", "Marrom", "Outra (combinar)"],
-      fotos: [0, 1, null, null, null, null, null, null],
+      fotos: [1, 0, null, null, null, null, null, null],
     },
   },
 
