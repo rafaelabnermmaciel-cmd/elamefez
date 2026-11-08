@@ -26,7 +26,7 @@ Tudo fica em `js/produtos.js`:
   - Escolhas (estampa, modelo, tema): `opcoes: { nome: "Estampa", itens: ["A", "B"] }`.
   - Campo de personalização: `personalizar: "Nome e data"`.
   - Selo no cartão: `selo: "novidade"`.
-- **Pix:** preencha `pix` em `window.LOJA`.
+- **Pix:** em `window.LOJA`, `pix` (só números, é o que o botão copia), `pixExibicao`, `pixTipo` e `pixNome`. Para tirar do site, deixe `pix: ""`.
 
 ## Links para divulgar
 

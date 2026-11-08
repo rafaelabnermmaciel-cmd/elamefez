@@ -334,6 +334,15 @@
             <label class="pill"><input type="radio" name="pagamento" value="Cartão (link de pagamento)"><span>Cartão (link)</span></label>
           </div>
         </fieldset>
+        <div class="pix-box" id="pix-box" hidden>
+          <div>
+            <span class="pix-label">Chave Pix (<span id="pix-tipo"></span>)</span>
+            <b id="pix-chave"></b>
+            <span class="pix-nome" id="pix-nome"></span>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="pix-copiar">Copiar</button>
+          <p class="pix-obs">Pague só depois que a Wilma confirmar o pedido, o prazo e o valor no WhatsApp.</p>
+        </div>
         <label>Observações (opcional)<textarea name="obs" rows="2" placeholder="É para presente? Alguma data especial?"></textarea></label>
         <p class="form-err" id="checkout-err" role="alert" hidden></p>
         <button class="btn btn-wa btn-block" type="submit">

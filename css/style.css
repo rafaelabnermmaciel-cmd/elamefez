@@ -260,6 +260,13 @@ fieldset.opt legend{font-size:.88rem;font-weight:500;color:var(--ink-2);margin-b
 .totals div{display:flex;justify-content:space-between;font-size:1.05rem}
 .totals b{color:var(--wine)}
 
+.pix-box{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;background:#EEF3E8;border:1px solid #CFDAC1;border-radius:12px;padding:14px 16px}
+.pix-label{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sage)}
+.pix-box b{display:block;font-size:1.15rem;letter-spacing:.02em}
+.pix-nome{display:block;font-size:.82rem;color:var(--muted)}
+.pix-obs{grid-column:1/-1;font-size:.8rem;color:var(--ink-2)}
+.btn-sm{padding:8px 16px;font-size:.88rem}
+
 /* Toast */
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 18px;border-radius:999px;font-size:.92rem;z-index:80;box-shadow:var(--shadow);animation:pop .2s;white-space:nowrap}
 

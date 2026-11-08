@@ -12,8 +12,11 @@ window.LOJA = {
   whatsapp: "5561996634060",
   whatsappExibicao: "(61) 99663-4060",
   instagram: "ela.me.fez",
-  // Chave Pix (opcional). Se preencher, aparece no carrinho e na mensagem.
-  pix: "",
+  // Chave Pix: aparece na sacola quando o cliente escolhe Pix.
+  pix: "34072349100",          // só números (é o que o botão "copiar" copia)
+  pixExibicao: "340.723.491-00",
+  pixTipo: "CPF",
+  pixNome: "Wilma Virgínia",
 };
 
 /* Tabela de tamanhos das necessaires (do catálogo oficial) */

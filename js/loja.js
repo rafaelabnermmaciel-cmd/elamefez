@@ -300,6 +300,23 @@
     toast("Abrindo o WhatsApp…");
   });
 
+  /* ---------- Pix ---------- */
+  const pixBox = $("#pix-box"), ck = $("#checkout");
+  function atualizarPix() {
+    pixBox.hidden = !L.pix || ck.pagamento.value !== "Pix";
+  }
+  if (L.pix) {
+    $("#pix-tipo").textContent = L.pixTipo || "chave";
+    $("#pix-chave").textContent = L.pixExibicao || L.pix;
+    $("#pix-nome").textContent = L.pixNome ? "em nome de " + L.pixNome : "";
+    $("#pix-copiar").addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(L.pix); toast("Chave Pix copiada!"); }
+      catch (_) { prompt("Copie a chave Pix:", L.pix); }
+    });
+  }
+  ck.addEventListener("change", (e) => { if (e.target.name === "pagamento") atualizarPix(); });
+  atualizarPix();
+
   /* ---------- Sob medida ---------- */
   $("#form-medida").addEventListener("submit", (e) => {
     e.preventDefault();
