@@ -891,23 +891,15 @@ label.pill{min-height:0}
   .header-in>.cart-btn{margin-left:8px}
 }
 @media (min-width:861px) and (max-width:1060px){.brand-sub{display:none}.nav{gap:16px}}
-/* botões flutuantes acima da barra do Safari (área segura) */
-@media (max-width:560px){
-  .fab-wa{width:48px;height:48px;right:16px;bottom:calc(24px + env(safe-area-inset-bottom))}
-  .fab-wa svg{width:25px;height:25px}
-  .chat-fab,.chat-fab:hover{width:50px;height:50px;right:15px;bottom:calc(82px + env(safe-area-inset-bottom))}
-  .chat-fab img{width:50px;height:50px}
-  .chat-q{width:20px;height:20px;font-size:.72rem;top:-3px;right:-3px}
-  .chat-hint{right:74px;bottom:calc(92px + env(safe-area-inset-bottom))}
-  .cart-bar{bottom:calc(24px + env(safe-area-inset-bottom));height:48px;right:76px}
+
+/* aberto pelo atalho da tela de início (modo app): sobe acima da barrinha do iPhone */
+@media (display-mode: standalone) and (max-width:560px){
+  .fab-wa{bottom:calc(14px + env(safe-area-inset-bottom))}
+  .chat-fab,.chat-fab:hover{bottom:calc(74px + env(safe-area-inset-bottom))}
+  .chat-hint{bottom:calc(84px + env(safe-area-inset-bottom))}
+  .cart-bar{bottom:calc(14px + env(safe-area-inset-bottom))}
   .chat{bottom:calc(8px + env(safe-area-inset-bottom))}
 }
-@media (max-width:560px){
-  .fab-wa{width:54px;height:54px;bottom:calc(44px + env(safe-area-inset-bottom))}
-  .fab-wa svg{width:28px;height:28px}
-  .chat-fab,.chat-fab:hover{width:58px;height:58px;bottom:calc(110px + env(safe-area-inset-bottom))}
-  .chat-fab img{width:58px;height:58px}
-  .chat-q{width:24px;height:24px;font-size:.85rem;top:-4px;right:-4px}
-  .chat-hint{bottom:calc(122px + env(safe-area-inset-bottom));right:82px}
-  .cart-bar{bottom:calc(44px + env(safe-area-inset-bottom));height:52px;right:82px}
+@media (display-mode: standalone){
+  .site-header{padding-top:env(safe-area-inset-top)}
 }
