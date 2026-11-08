@@ -115,7 +115,7 @@
     const ft = $("#pm-tamanhos");
     if (p.tamanhos) {
       ft.hidden = false;
-      pillGroup(ft, "tam", p.tamanhos.map((t) => ({ value: t.id, label: t.nome, sub: fmt(t.preco) + "\n" + t.medida })));
+      pillGroup(ft, "tam", p.tamanhos.map((t) => ({ value: t.id, label: t.nome, sub: fmt(t.preco).replace(",00", "") })));
     } else ft.hidden = true;
 
     // opções
@@ -139,6 +139,7 @@
     el.classList.remove("orc");
     if (p.tamanhos) {
       const t = sel && p.tamanhos.find((x) => x.id === sel.value);
+      $("#pm-medida").textContent = t ? "Medidas: " + t.medida + " (L × A × P)" : "Toque em um tamanho para ver as medidas.";
       el.innerHTML = t ? fmt(t.preco) : '<span style="font-weight:400;font-size:.9rem;color:var(--muted)">a partir de </span>' + fmt(precoBase(p));
     } else if (typeof p.preco === "number") el.textContent = fmt(p.preco);
     else { el.textContent = "Sob orçamento: valor confirmado no WhatsApp"; el.classList.add("orc"); }
