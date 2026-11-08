@@ -568,3 +568,11 @@ em{font-style:normal;color:var(--accent)}
 @media (max-width:1280px){.ig-btn span{display:none}.ig-btn{padding:9px 11px}}
 @media (max-width:1120px){.brand-sub{display:none}.nav{gap:18px}}
 @media (max-width:1024px){.nav-cta{display:none}}
+/* v2.2: depoimentos em carrossel no celular; foto do "por que" some no celular */
+@media (max-width:560px){
+  .testis{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -16px 18px;padding:4px 16px 8px;scrollbar-width:none}
+  .testis::-webkit-scrollbar{display:none}
+  .testi{flex:0 0 78%;scroll-snap-align:start}
+  .trio-b{display:none}
+  .statement{margin-top:44px}
+}
