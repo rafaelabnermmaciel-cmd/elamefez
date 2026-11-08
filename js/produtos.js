@@ -43,7 +43,7 @@ window.PRODUTOS = [
     cat: "necessaires",
     selo: "mais pedida",
     desc: "Material sintético texturizado em bordô, forro interno impermeável, zíper bege e etiqueta de couro “Ela me Fez”. Elegante para o dia a dia e para viagem.",
-    fotos: ["img/nec-bordo-m.jpg", "img/nec-bordo-p.jpg", "img/nec-bordo-g.jpg", "img/hero-necessaires.jpg"],
+    fotos: ["img/nec-bordo-m.jpg", "img/nec-bordo-p.jpg", "img/nec-bordo-g.jpg"],
     tamanhos: TAM_NECESSAIRE,
   },
   {
