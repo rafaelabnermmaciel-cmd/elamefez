@@ -39,6 +39,7 @@
       <a href="#sob-medida">Sob medida</a>
     </nav>
     <a class="pill pill-light nav-cta" href="#catalogo">Fazer pedido <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="ig-btn" href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener" aria-label="Instagram @ela.me.fez"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>@ela.me.fez</span></a>
     <button class="cart-btn" id="abrir-carrinho" aria-label="Abrir sacola">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7V6a3 3 0 0 1 6 0v1"/></svg>
       <span class="cart-label">Sacola</span>
@@ -55,9 +56,10 @@
       <div class="hero-card">
         <p class="hero-word" aria-hidden="true">Ela <i>me</i> Fez</p>
         <div class="hero-photos" aria-hidden="true">
-          <img src="img/nec-boho.jpg" alt="" class="hp1">
           <img src="img/bordado-td.jpg" alt="" class="hp2">
           <img src="img/amigurumi-raposa.jpg" alt="" class="hp3">
+          <img src="img/nec-boho.jpg" alt="" class="hp1">
+          <span class="leather-tag hp-tag">necessaires a partir de R$ 25</span>
         </div>
         <div class="hero-copy">
           <span class="kicker light">ateliê de artesanato</span>
@@ -96,31 +98,6 @@
     </div>
   </section>
 
-  <!-- MOSAICO -->
-  <section class="band">
-    <div class="wrap">
-      <div class="head2 center">
-        <h2><b>Feito à mão, <em>não em série</em>.</b></h2>
-        <p>Cada peça passa pelas mãos da Wilma em todas as etapas: o tecido é escolhido com calma, cortado, costurado e finalizado um a um, com a etiquetinha de couro que é a assinatura da casa.</p>
-        <a class="pill pill-dark" href="#catalogo">Escolher minha peça <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      </div>
-      <div class="bento">
-        <a class="b1" href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener">
-          <img src="img/nec-coracoes.jpg" alt="Necessaire rosa com corações" loading="lazy">
-          <div class="ig-card">
-            <span class="leather-tag sm">Ela me Fez</span>
-            <b>@ela.me.fez</b>
-            <span>Bastidores, estampas novas e entregas. Veja tudo no Instagram.</span>
-            <span class="pill pill-dark sm">Seguir <span class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
-          </div>
-        </a>
-        <figure class="b2"><img src="img/nec-avioes.jpg" alt="Necessaires de aviõezinhos" loading="lazy"><figcaption>Aviõezinhos: para a mala de viagem das crianças.</figcaption></figure>
-        <figure class="b3"><img src="img/bordado-mm.jpg" alt="Bastidor bordado com monograma" loading="lazy"><figcaption>Bastidor porta-alianças, bordado à mão.</figcaption></figure>
-        <figure class="b4"><img src="img/bebe-urso.jpg" alt="Panos de boca com ursinhos" loading="lazy"><figcaption>Kits de bebê</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
   <!-- CATÁLOGO -->
   <section class="band soft" id="catalogo">
     <div class="wrap">
@@ -131,6 +108,57 @@
       </div>
       <div class="chips" id="chips" role="tablist" aria-label="Categorias"></div>
       <div class="grid" id="grid" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- SOB MEDIDA -->
+  <section class="band dark" id="sob-medida">
+    <div class="wrap">
+      <div class="custom2">
+        <div class="custom2-a">
+          <span class="kicker light">sob medida</span>
+          <h2><span class="serif">Tem uma ideia?</span><b>A gente costura.</b></h2>
+          <p>Cor específica, outra estampa, tamanho diferente, nome bordado ou um kit para presentear. Preencha o que souber: a Wilma responde com orçamento e prazo.</p>
+          <ul class="ticks">
+            <li>Cores e estampas à sua escolha</li>
+            <li>Medidas sob encomenda</li>
+            <li>Nome, monograma ou data</li>
+            <li>Kits para casamento, chá de bebê e lembrancinhas</li>
+          </ul>
+        </div>
+        <form class="custom2-b form" id="form-medida" novalidate>
+          <p class="form-title">Pedido sob medida</p>
+          <p class="muted small">Resposta pelo WhatsApp.</p>
+          <label>Que peça você quer?
+            <select name="peca" required>
+              <option value="">Escolha…</option>
+              <option>Necessaire</option>
+              <option>Estojo</option>
+              <option>Kit necessaire + estojo</option>
+              <option>Bastidor bordado</option>
+              <option>Amigurumi</option>
+              <option>Kit bebê / maternidade</option>
+              <option>Caderno ou planner</option>
+              <option>Jogo americano</option>
+              <option>Lembrancinhas (quantidade)</option>
+              <option>Outra coisa</option>
+            </select>
+          </label>
+          <div class="row2">
+            <label>Tamanho ou medidas<input name="tamanho" placeholder="Ex.: M, ou 25 × 15 cm"></label>
+            <label>Quantidade<input name="qtd" type="number" min="1" value="1" inputmode="numeric"></label>
+          </div>
+          <label>Cores e estampa<input name="cores" placeholder="Ex.: verde-oliva com floral miudinho"></label>
+          <label>Personalização (opcional)<input name="personal" placeholder="Nome, iniciais, data…"></label>
+          <div class="row2">
+            <label>Para quando precisa?<input name="data" placeholder="Ex.: até 20/12"></label>
+            <label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar?"></label>
+          </div>
+          <label>Conte mais (opcional)<textarea name="obs" rows="3" placeholder="Referências, para quem é, ocasião…"></textarea></label>
+          <p class="form-err" id="medida-err" role="alert" hidden></p>
+          <button class="pill pill-light btn-block" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.9 13.9c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg> Enviar pedido sob medida</button>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -250,54 +278,6 @@
       </div>
     </div>
 
-    <!-- SOB MEDIDA -->
-    <div class="wrap" id="sob-medida">
-      <div class="custom2">
-        <div class="custom2-a">
-          <span class="kicker light">sob medida</span>
-          <h2><span class="serif">Tem uma ideia?</span><b>A gente costura.</b></h2>
-          <p>Cor específica, outra estampa, tamanho diferente, nome bordado ou um kit para presentear. Preencha o que souber: a Wilma responde com orçamento e prazo.</p>
-          <ul class="ticks">
-            <li>Cores e estampas à sua escolha</li>
-            <li>Medidas sob encomenda</li>
-            <li>Nome, monograma ou data</li>
-            <li>Kits para casamento, chá de bebê e lembrancinhas</li>
-          </ul>
-        </div>
-        <form class="custom2-b form" id="form-medida" novalidate>
-          <p class="form-title">Pedido sob medida</p>
-          <p class="muted small">Resposta pelo WhatsApp.</p>
-          <label>Que peça você quer?
-            <select name="peca" required>
-              <option value="">Escolha…</option>
-              <option>Necessaire</option>
-              <option>Estojo</option>
-              <option>Kit necessaire + estojo</option>
-              <option>Bastidor bordado</option>
-              <option>Amigurumi</option>
-              <option>Kit bebê / maternidade</option>
-              <option>Caderno ou planner</option>
-              <option>Jogo americano</option>
-              <option>Lembrancinhas (quantidade)</option>
-              <option>Outra coisa</option>
-            </select>
-          </label>
-          <div class="row2">
-            <label>Tamanho ou medidas<input name="tamanho" placeholder="Ex.: M, ou 25 × 15 cm"></label>
-            <label>Quantidade<input name="qtd" type="number" min="1" value="1" inputmode="numeric"></label>
-          </div>
-          <label>Cores e estampa<input name="cores" placeholder="Ex.: verde-oliva com floral miudinho"></label>
-          <label>Personalização (opcional)<input name="personal" placeholder="Nome, iniciais, data…"></label>
-          <div class="row2">
-            <label>Para quando precisa?<input name="data" placeholder="Ex.: até 20/12"></label>
-            <label>Seu nome<input name="nome" required autocomplete="name" placeholder="Como podemos te chamar?"></label>
-          </div>
-          <label>Conte mais (opcional)<textarea name="obs" rows="3" placeholder="Referências, para quem é, ocasião…"></textarea></label>
-          <p class="form-err" id="medida-err" role="alert" hidden></p>
-          <button class="pill pill-light btn-block" type="submit"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.9 13.9c-.2.6-1.2 1.2-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.5-4-.1-.2-1-1.4-1-2.7s.7-1.9.9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.7 1.2 1.6 2 1.1 1 2 1.3 2.3 1.4.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg> Enviar pedido sob medida</button>
-        </form>
-      </div>
-    </div>
   </section>
 
 </main>
@@ -308,7 +288,7 @@
     <p class="footer-quote">Feito à mão é assim: nenhuma peça igual à outra.</p>
     <div class="footer-links">
       <a href="https://wa.me/5561996634060" target="_blank" rel="noopener">WhatsApp (61) 99663-4060</a>
-      <a href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener">Instagram @ela.me.fez</a>
+      <a href="https://www.instagram.com/ela.me.fez" target="_blank" rel="noopener" class="ig-foot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg> Instagram @ela.me.fez</a>
     </div>
   </div>
   <p class="footer-meta">© 2026 Ela me Fez · Ateliê Wilma Virgínia · peças artesanais feitas sob encomenda</p>

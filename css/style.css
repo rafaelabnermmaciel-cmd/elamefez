@@ -548,3 +548,23 @@ em{font-style:normal;color:var(--accent)}
   .cat-grid a{padding:24px 12px}.cat-grid b{font-size:1.35rem}
   .statement{margin-top:56px}
 }
+
+/* ajustes v2.1 */
+.ig-btn{display:flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);font-weight:600;font-size:.88rem;text-decoration:none;color:var(--ink)}
+.ig-btn svg{width:20px;height:20px}
+.ig-btn:hover{border-color:var(--accent);color:var(--accent)}
+.cart-btn{margin-left:0}
+.nav{margin-left:auto}
+.ig-foot{display:inline-flex;align-items:center;gap:8px}.ig-foot svg{width:18px;height:18px}
+#sob-medida{margin-top:0;scroll-margin-top:70px}
+.hp1{z-index:3;right:4%;top:auto;bottom:6%;width:74%;transform:rotate(-2deg);border:6px solid #F5EFE6}
+.hp2{z-index:1;left:0;top:4%;width:42%;transform:rotate(-6deg);opacity:.95}
+.hp3{z-index:2;right:0;top:0;bottom:auto;width:40%;transform:rotate(5deg);opacity:.95}
+.hp-tag{position:absolute;z-index:4;left:2%;bottom:4%;font-size:1.15rem;transform:rotate(-4deg)}
+@media (max-width:860px){.ig-btn span{display:none}.ig-btn{padding:9px 11px;margin-left:auto}.nav{margin-left:0}}
+@media (max-width:560px){.hero-photos{min-height:300px}.hp1{width:78%;right:2%}.hp-tag{font-size:.95rem}}
+.nav{gap:22px}.nav a{white-space:nowrap}
+.brand-sub{white-space:nowrap}
+@media (max-width:1280px){.ig-btn span{display:none}.ig-btn{padding:9px 11px}}
+@media (max-width:1120px){.brand-sub{display:none}.nav{gap:18px}}
+@media (max-width:1024px){.nav-cta{display:none}}
