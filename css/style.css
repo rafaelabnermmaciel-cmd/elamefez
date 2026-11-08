@@ -629,3 +629,9 @@ em{font-style:normal;color:var(--accent)}
   .chat-fab-txt{display:none}
   .chat{right:8px;left:8px;width:auto;bottom:8px;height:min(78dvh,620px)}
 }
+/* v2.4: botões flutuantes visíveis — WhatsApp verde, assistente cor de couro */
+.fab-wa{background:#25D366;color:#fff;box-shadow:0 10px 24px -6px rgba(18,140,70,.55)}
+.fab-wa:hover{background:#1EBE5B}
+.chat-fab{background:linear-gradient(160deg,#C08A5C,#8E5E3A);color:#fff;border:2px solid #fff;box-shadow:0 10px 24px -6px rgba(124,83,51,.6)}
+.chat-fab:hover{filter:brightness(1.05)}
+@media (max-width:560px){.chat-fab-txt{display:inline}.chat-fab{padding:0 16px 0 12px}}
