@@ -28,7 +28,7 @@ const TAM_NECESSAIRE = [
   { id: "PP", nome: "PP", medida: "16 × 10 × 6 cm", preco: 25 },
   { id: "P",  nome: "P",  medida: "18 × 10 × 8 cm", preco: 29 },
   { id: "M",  nome: "M",  medida: "20 × 10 × 10 cm", preco: 39 },
-  { id: "G",  nome: "G",  medida: "23 × 12 × 12 cm", preco: 54 },
+  { id: "G",  nome: "G",  medida: "23 × 12 × 12 cm", preco: 49 },
 ];
 
 window.CATEGORIAS = [
